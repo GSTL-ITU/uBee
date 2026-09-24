@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/microBee_Logo.svg" alt="microBee" width="220">
+  <img src="assets/microBee_Logo.svg" alt="microBee" width="400">
 </p>
 
 # microBee

@@ -4,7 +4,17 @@
 
 # microBee — EHB326E Lesson Contents (Student Package)
 
-Course materials for MCU / uBee lab work (book chapter 2 block design + hello UART test).
+**microBee** (μBee) is a teaching-oriented RISC-V MCU / SoC platform for the EHB326E course: Vivado IP (`uBee_soc`), block-design labs, hello UART bring-up, and an accompanying RV32 emulator.
+
+This is a joint project of the **GSTL** lab and the **TUBITAK TUTEL Scholar Laboratory**.
+
+<p align="center">
+  <a href="https://www.gstl.itu.edu.tr/"><img src="assets/GSTL_logo.png" alt="GSTL" height="88"></a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://tutel.bilgem.tubitak.gov.tr/"><img src="assets/tutel_logo.png" alt="TÜTEL" height="88"></a>
+</p>
+
+For more information and collaboration opportunities, visit the [GSTL](https://www.gstl.itu.edu.tr/) and [TÜTEL](https://tutel.bilgem.tubitak.gov.tr/) websites or email [gstl@itu.edu.tr](mailto:gstl@itu.edu.tr) and [tutel@tubitak.gov.tr](mailto:tutel@tubitak.gov.tr).
 
 ## Contents
 

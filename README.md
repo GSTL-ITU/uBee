@@ -13,7 +13,7 @@ microBee is a joint project of the **GSTL** and **TÜBİTAK TÜTEL Bursiyer Labo
 <p align="center">
   <a href="https://www.gstl.itu.edu.tr/"><img src="assets/GSTL_logo.png" alt="GSTL" height="88"></a>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://tutel.bilgem.tubitak.gov.tr/"><img src="assets/tutel_logo.png" alt="TÜTEL" height="88"></a>
+  <a href="https://tutel.bilgem.tubitak.gov.tr/"><img src="assets/tutel_logo_2.png" alt="TÜTEL" height="88"></a>
 </p>
 
 For more information or collaboration opportunities, visit the [GSTL](https://www.gstl.itu.edu.tr/) and [TÜTEL](https://tutel.bilgem.tubitak.gov.tr/) websites, or contact us at [gstl@itu.edu.tr](mailto:gstl@itu.edu.tr) and [tutel@tubitak.gov.tr](mailto:tutel@tubitak.gov.tr).

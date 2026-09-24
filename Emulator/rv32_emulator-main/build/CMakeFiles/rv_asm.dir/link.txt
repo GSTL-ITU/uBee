@@ -1,0 +1,2 @@
+/usr/bin/ar qc librv_asm.a CMakeFiles/rv_asm.dir/src/asm/source.cpp.o CMakeFiles/rv_asm.dir/src/asm/diagnostic.cpp.o CMakeFiles/rv_asm.dir/src/asm/diag_render.cpp.o CMakeFiles/rv_asm.dir/src/asm/directive.cpp.o CMakeFiles/rv_asm.dir/src/asm/lexer.cpp.o CMakeFiles/rv_asm.dir/src/asm/complete.cpp.o CMakeFiles/rv_asm.dir/src/asm/symtab.cpp.o CMakeFiles/rv_asm.dir/src/asm/pseudo.cpp.o CMakeFiles/rv_asm.dir/src/asm/parser.cpp.o CMakeFiles/rv_asm.dir/src/asm/sourcemap.cpp.o CMakeFiles/rv_asm.dir/src/asm/assembler.cpp.o
+/usr/bin/ranlib librv_asm.a

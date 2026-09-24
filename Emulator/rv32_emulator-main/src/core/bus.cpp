@@ -5,13 +5,7 @@
 namespace rv::core {
 namespace {
 
-std::size_t slot_of(Addr addr) { return ((addr - kMmioBase) / kSlotSize) % kMmioSlots; }
-
-/// Offset within the device occupying `addr`, which for a multi-slot device
-/// spans further than one slot.
-u32 offset_of(Addr addr, const Device& device) {
-    return addr - slot_address(device.slot());
-}
+u32 offset_of(Addr addr, const Device& device) { return addr - device.base_address(); }
 
 }  // namespace
 
@@ -25,8 +19,28 @@ Device* Bus::attach(std::size_t slot, std::unique_ptr<Device> device) {
     if (device == nullptr) return nullptr;
     const std::size_t span = std::max<std::size_t>(1, device->slot_count());
     if (slot + span > kMmioSlots) return nullptr;
+    return attach_at(slot_address(slot), std::move(device));
+}
 
-    device->set_slot(slot);
+Device* Bus::attach_at(Addr base, std::unique_ptr<Device> device) {
+    if (device == nullptr) return nullptr;
+
+    device->set_base_address(base);
+    if (base >= kMmioBase && base - kMmioBase < kMmioSize &&
+        ((base - kMmioBase) % kSlotSize) == 0) {
+        const std::size_t slot = (base - kMmioBase) / kSlotSize;
+        const std::size_t span = std::max<std::size_t>(1, device->slot_count());
+        if (slot + span <= kMmioSlots) {
+            device->set_slot(slot);
+        } else {
+            // Absolute placement outside the slot table: keep a sentinel slot
+            // so slot-based UI helpers do not claim a false window index.
+            device->set_slot(kMmioSlots);
+        }
+    } else {
+        device->set_slot(kMmioSlots);
+    }
+
     Device* raw = device.get();
     owned_.push_back(std::move(device));
     rebuild_slots();
@@ -38,6 +52,7 @@ void Bus::rebuild_slots() {
     slots_.fill(nullptr);
     for (const std::unique_ptr<Device>& device : owned_) {
         const std::size_t base = device->slot();
+        if (base >= kMmioSlots) continue;
         const std::size_t span = std::max<std::size_t>(1, device->slot_count());
         for (std::size_t index = base; index < base + span && index < kMmioSlots; ++index) {
             slots_[index] = device.get();
@@ -46,11 +61,17 @@ void Bus::rebuild_slots() {
 }
 
 std::vector<Device*> Bus::devices_overlapping(std::size_t slot, std::size_t span) const {
+    return devices_overlapping_address(slot_address(slot),
+                                       static_cast<u32>(std::max<std::size_t>(1, span) * kSlotSize));
+}
+
+std::vector<Device*> Bus::devices_overlapping_address(Addr base, u32 span_bytes) const {
     std::vector<Device*> out;
+    const Addr end = base + span_bytes;
     for (const std::unique_ptr<Device>& device : owned_) {
-        const std::size_t base = device->slot();
-        const std::size_t other = std::max<std::size_t>(1, device->slot_count());
-        if (base < slot + span && slot < base + other) out.push_back(device.get());
+        const Addr other = device->base_address();
+        const Addr other_end = other + device->span_bytes();
+        if (other < end && base < other_end) out.push_back(device.get());
     }
     return out;
 }
@@ -58,6 +79,10 @@ std::vector<Device*> Bus::devices_overlapping(std::size_t slot, std::size_t span
 std::size_t Bus::reachable_slots(const Device* device) const {
     if (device == nullptr) return 0;
     const std::size_t base = device->slot();
+    if (base >= kMmioSlots) {
+        // Outside the legacy window: reachable if still the owner of its base.
+        return device_for_address(device->base_address()) == device ? 1 : 0;
+    }
     const std::size_t span = std::max<std::size_t>(1, device->slot_count());
     std::size_t count = 0;
     for (std::size_t index = base; index < base + span && index < kMmioSlots; ++index) {
@@ -108,8 +133,11 @@ Device* Bus::device_at_slot(std::size_t slot) const {
 }
 
 Device* Bus::device_for_address(Addr addr) const {
-    if (!is_mmio(addr)) return nullptr;
-    return slots_[slot_of(addr)];
+    // Later arrivals win overlapping addresses -- walk owned_ reverse.
+    for (auto it = owned_.rbegin(); it != owned_.rend(); ++it) {
+        if ((*it)->contains_address(addr)) return it->get();
+    }
+    return nullptr;
 }
 
 std::vector<Device*> Bus::devices() const {
@@ -136,44 +164,43 @@ void Bus::attach_default_devices() {
 // ---------------------------------------------------------------------------
 
 MemResult Bus::load(Addr addr, u8 width, bool is_signed) {
-    if (!is_mmio(addr)) return dmem_.read(addr, width, is_signed);
-
-    if ((addr & (width - 1u)) != 0) return MemResult::failure(TrapCause::LoadAddressMisaligned);
-    Device* device = device_for_address(addr);
-    // An address in the window with nothing attached faults rather than
-    // reading as zero: a program touching a peripheral that is not there
-    // should be told, not quietly given nothing.
-    if (device == nullptr) return MemResult::failure(TrapCause::LoadAccessFault);
-    return MemResult::success(device->read(offset_of(addr, *device), width));
+    if (Device* device = device_for_address(addr)) {
+        if ((addr & (width - 1u)) != 0) return MemResult::failure(TrapCause::LoadAddressMisaligned);
+        return MemResult::success(device->read(offset_of(addr, *device), width));
+    }
+    if (dmem_.contains(addr)) return dmem_.read(addr, width, is_signed);
+    // Empty region of the legacy MMIO window still faults rather than reading
+    // as zero: a program touching a peripheral that is not there should know.
+    if (is_mmio(addr)) return MemResult::failure(TrapCause::LoadAccessFault);
+    return MemResult::failure(TrapCause::LoadAccessFault);
 }
 
 MemResult Bus::store(Addr addr, u8 width, u32 value) {
-    if (!is_mmio(addr)) return dmem_.write(addr, width, value);
-
-    if ((addr & (width - 1u)) != 0) return MemResult::failure(TrapCause::StoreAddressMisaligned);
-    Device* device = device_for_address(addr);
-    if (device == nullptr) return MemResult::failure(TrapCause::StoreAccessFault);
-    device->write(offset_of(addr, *device), width, value);
-    return MemResult::success(0);
+    if (Device* device = device_for_address(addr)) {
+        if ((addr & (width - 1u)) != 0) {
+            return MemResult::failure(TrapCause::StoreAddressMisaligned);
+        }
+        device->write(offset_of(addr, *device), width, value);
+        return MemResult::success(0);
+    }
+    if (dmem_.contains(addr)) return dmem_.write(addr, width, value);
+    if (is_mmio(addr)) return MemResult::failure(TrapCause::StoreAccessFault);
+    return MemResult::failure(TrapCause::StoreAccessFault);
 }
 
 u32 Bus::peek_word(Addr addr) const {
-    if (!is_mmio(addr)) return dmem_.read_word_raw(addr);
-    // Devices participate, through their own side-effect-free path. This is
-    // what lets the memory view show a peripheral's registers, and what lets a
-    // single one-word delta undo a write to one.
-    Device* device = device_for_address(addr);
-    return device == nullptr ? 0u : device->peek(offset_of(addr, *device) & ~3u);
+    if (Device* device = device_for_address(addr)) {
+        return device->peek(offset_of(addr, *device) & ~3u);
+    }
+    return dmem_.read_word_raw(addr);
 }
 
 void Bus::poke_word(Addr addr, u32 value) {
-    if (!is_mmio(addr)) {
-        dmem_.write_word_raw(addr, value);
-        return;
-    }
     if (Device* device = device_for_address(addr)) {
         device->poke(offset_of(addr, *device) & ~3u, value);
+        return;
     }
+    dmem_.write_word_raw(addr, value);
 }
 
 u32 Bus::pending_interrupts(u64 now) const {

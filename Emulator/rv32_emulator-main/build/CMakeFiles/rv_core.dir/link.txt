@@ -1,0 +1,2 @@
+/usr/bin/ar qc librv_core.a CMakeFiles/rv_core.dir/src/core/csrfile.cpp.o CMakeFiles/rv_core.dir/src/core/memory.cpp.o CMakeFiles/rv_core.dir/src/core/devices.cpp.o CMakeFiles/rv_core.dir/src/core/device_config.cpp.o CMakeFiles/rv_core.dir/src/core/bus.cpp.o CMakeFiles/rv_core.dir/src/core/exec.cpp.o CMakeFiles/rv_core.dir/src/core/hart.cpp.o CMakeFiles/rv_core.dir/src/core/memfile.cpp.o CMakeFiles/rv_core.dir/src/core/trap.cpp.o
+/usr/bin/ranlib librv_core.a

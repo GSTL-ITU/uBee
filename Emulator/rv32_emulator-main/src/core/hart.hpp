@@ -85,6 +85,17 @@ public:
         bus_.resize_dmem(dmem_size);
     }
 
+    /// Place IMEM/DMEM at absolute bases (uBee SoC: 0x80000000 / 0x20000000).
+    void set_memory_bases(Addr imem_base, Addr dmem_base) {
+        imem_.set_base(imem_base);
+        bus_.set_dmem_base(dmem_base);
+    }
+
+    /// Default reset/entry PC from a board file. Used when a program has no
+    /// `_start` label. Zero means "leave the caller's entry alone".
+    void set_reset_entry(Addr entry) { reset_entry_ = entry; }
+    Addr reset_entry() const { return reset_entry_; }
+
     CpuState& cpu() { return cpu_; }
     const CpuState& cpu() const { return cpu_; }
     Memory& imem() { return imem_; }
@@ -127,6 +138,7 @@ private:
     CpuState cpu_;
     Memory imem_;
     Bus bus_;
+    Addr reset_entry_ = 0;
     EbreakBehavior ebreak_behavior_ = EbreakBehavior::HaltToDebugger;
     HaltReason halt_reason_ = HaltReason::None;
 };

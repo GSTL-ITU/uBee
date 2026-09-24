@@ -448,6 +448,11 @@ void MainWindow::assemble() {
     const QByteArray text = editor_->toPlainText().toUtf8();
     as::AssembleOptions options;
     options.explain_pseudo_sizing = false;  // the diagnostics list has no room for prose
+    options.imem_size = session_->hart().imem().size();
+    options.dmem_size = session_->hart().bus().dmem().size();
+    options.imem_base = session_->hart().imem().base();
+    options.dmem_base = session_->hart().bus().dmem().base();
+    options.reset_entry = session_->hart().reset_entry();
 
     const std::string name =
         path_.isEmpty() ? std::string("<editor>") : path_.toStdString();

@@ -76,6 +76,10 @@ std::unique_ptr<Device> make_device(std::string_view type, u32 size = 0,
 struct DeviceSpec {
     std::string type;
     std::size_t slot = 0;
+    /// Absolute base when `has_address` is set. Otherwise the slot maps into
+    /// the legacy `0xFFFF0000` window.
+    Addr address = 0;
+    bool has_address = false;
     /// Bytes, for ram and rom.
     u32 size = 0;
     /// Initial value for an input device, or the contents of a display.
@@ -104,6 +108,15 @@ struct DeviceConfig {
     /// which is what a file that only describes peripherals says.
     u32 imem_size = 0;
     u32 dmem_size = 0;
+    /// Absolute IMEM/DMEM bases. Absent keys leave the current bases alone
+    /// (default machine keeps both at 0).
+    Addr imem_base = 0;
+    Addr dmem_base = 0;
+    bool has_imem_base = false;
+    bool has_dmem_base = false;
+    /// Reset / entry PC when a program has no `_start`.
+    Addr reset = 0;
+    bool has_reset = false;
     std::string error;   // empty when the file parsed
     bool ok() const { return error.empty(); }
 };

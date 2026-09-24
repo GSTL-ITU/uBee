@@ -16,19 +16,23 @@ namespace {
 
 using isa::InstrId;
 
-/// One output section. Both text and data are byte buffers with an explicit
-/// cursor, so `.byte` inside `.text` and a backwards `.org` both work without
-/// special cases.
+/// One output section. Both text and data are byte buffers with an absolute
+/// cursor; bytes are stored relative to `origin`, so `.byte` inside `.text`, a
+/// backwards `.org`, and a non-zero IMEM/DMEM base (uBee SoC) all work.
 struct Section {
     std::vector<u8> bytes;
+    Addr origin = 0;
     Addr cursor = 0;
+
+    std::size_t index_of(Addr addr) const { return static_cast<std::size_t>(addr - origin); }
 
     void reserve_to(std::size_t end) {
         if (bytes.size() < end) bytes.resize(end, 0);
     }
     void emit_byte(u8 value) {
-        reserve_to(cursor + 1);
-        bytes[cursor] = value;
+        const std::size_t index = index_of(cursor);
+        reserve_to(index + 1);
+        bytes[index] = value;
         ++cursor;
     }
     void emit_half(u16 value) {
@@ -40,9 +44,11 @@ struct Section {
         emit_half(static_cast<u16>(value >> 16));
     }
     void skip(u32 count) {
-        reserve_to(cursor + count);
+        const std::size_t index = index_of(cursor);
+        reserve_to(index + count);
         cursor += count;
     }
+    void rewind_to_origin() { cursor = origin; }
 };
 
 struct Value {
@@ -1151,8 +1157,21 @@ void Assembler::run_directive_layout(const AsmLine& line, AsmLine& mutable_line)
                 return;
             }
             Section& current = section();
-            current.reserve_to(static_cast<std::size_t>(target));
-            current.cursor = static_cast<Addr>(target);
+            const Addr abs = static_cast<Addr>(target);
+            if (abs < current.origin) {
+                error("E0114", "'.org' address is before the start of this space",
+                      line.operands[0].span, "",
+                      "this machine's " +
+                          std::string(space_ == Space::Text ? ".text" : ".data") + " starts at 0x" +
+                          [&] {
+                              char buf[16];
+                              std::snprintf(buf, sizeof buf, "%08x", current.origin);
+                              return std::string(buf);
+                          }());
+                return;
+            }
+            current.reserve_to(current.index_of(abs));
+            current.cursor = abs;
             return;
         }
 
@@ -1265,8 +1284,10 @@ void Assembler::run_directive_encode(const AsmLine& line) {
             const Value value = eval_operand(line, 0, false);
             if (!value.ok || value.number < 0) return;
             Section& current = section();
-            current.reserve_to(static_cast<std::size_t>(value.number));
-            current.cursor = static_cast<Addr>(value.number);
+            const Addr abs = static_cast<Addr>(value.number);
+            if (abs < current.origin) return;
+            current.reserve_to(current.index_of(abs));
+            current.cursor = abs;
             return;
         }
 
@@ -1299,6 +1320,12 @@ void Assembler::run_directive_encode(const AsmLine& line) {
 
 void Assembler::pass_layout() {
     space_ = Space::Text;
+    text_.origin = options_.imem_base;
+    text_.cursor = options_.imem_base;
+    text_.bytes.clear();
+    data_.origin = options_.dmem_base;
+    data_.cursor = options_.dmem_base;
+    data_.bytes.clear();
     for (AsmLine& line : program_.lines) {
         current_line_ = line.line;
         current_line_addr_ = cursor();
@@ -1369,8 +1396,8 @@ void Assembler::pass_layout() {
 
 void Assembler::pass_encode() {
     space_ = Space::Text;
-    text_.cursor = 0;
-    data_.cursor = 0;
+    text_.rewind_to_origin();
+    data_.rewind_to_origin();
 
     for (const AsmLine& line : program_.lines) {
         begin_line(line);
@@ -1399,6 +1426,10 @@ void Assembler::run() {
 
     if (const Symbol* start = out_.symbols.find("_start")) {
         if (start->space == Space::Text) out_.entry = start->value;
+    } else if (options_.reset_entry != 0) {
+        out_.entry = options_.reset_entry;
+    } else {
+        out_.entry = options_.imem_base;
     }
 
     if (text_.bytes.size() > options_.imem_size) {

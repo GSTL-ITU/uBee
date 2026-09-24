@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/rv32.dir/src/main.cpp.o -o rv32  librv_cmd.a librv_dbg.a librv_asm.a librv_core.a librv_isa.a 

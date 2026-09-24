@@ -1,0 +1,282 @@
+[
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_isa.dir/src/isa/isa.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/isa.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/isa.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_isa.dir/src/isa/csr.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/csr.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/csr.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_isa.dir/src/isa/decode.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/decode.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/decode.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_isa.dir/src/isa/expand.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/expand.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/expand.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_isa.dir/src/isa/encode.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/encode.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/encode.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_isa.dir/src/isa/disasm.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/disasm.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/disasm.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_isa.dir/src/isa/regnames.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/regnames.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/isa/regnames.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/csrfile.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/csrfile.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/csrfile.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/memory.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/memory.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/memory.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/devices.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/devices.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/devices.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/device_config.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/device_config.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/device_config.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/bus.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/bus.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/bus.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/exec.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/exec.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/exec.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/hart.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/hart.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/hart.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/memfile.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/memfile.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/memfile.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_core.dir/src/core/trap.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/trap.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/core/trap.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/source.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/source.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/source.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/diagnostic.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/diagnostic.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/diagnostic.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/diag_render.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/diag_render.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/diag_render.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/directive.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/directive.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/directive.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/lexer.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/lexer.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/lexer.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/complete.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/complete.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/complete.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/symtab.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/symtab.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/symtab.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/pseudo.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/pseudo.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/pseudo.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/parser.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/parser.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/parser.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/sourcemap.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/sourcemap.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/sourcemap.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_asm.dir/src/asm/assembler.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/assembler.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/asm/assembler.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_dbg.dir/src/dbg/history.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/history.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/history.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_dbg.dir/src/dbg/breakpoints.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/breakpoints.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/breakpoints.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_dbg.dir/src/dbg/session.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/session.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/session.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++  -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_dbg.dir/src/dbg/pipeline.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/pipeline.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/dbg/pipeline.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_cmd.dir/src/cmd/format.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/format.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/format.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_cmd.dir/src/cmd/commands.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/commands.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/commands.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_cmd.dir/src/cmd/repl.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/repl.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/repl.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_cmd.dir/src/cmd/tty.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/tty.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/cmd/tty.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv32.dir/src/main.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/main.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src/main.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/test_main.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/test_main.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/test_main.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_fields.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_fields.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_fields.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_decode.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_decode.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_decode.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_expand.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_expand.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_expand.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_roundtrip.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_roundtrip.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_roundtrip.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_exec_alu.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_alu.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_alu.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_exec_mem.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_mem.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_mem.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_exec_branch.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_branch.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_branch.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_exec_m.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_m.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_m.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_exec_coverage.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_coverage.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_exec_coverage.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_csr_trap.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_csr_trap.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_csr_trap.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_interrupt.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_interrupt.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_interrupt.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_memfile.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_memfile.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_memfile.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_devices.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_devices.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_devices.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_lexer.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_lexer.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_lexer.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_diag_render.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_diag_render.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_diag_render.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_assembler.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_assembler.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_assembler.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_complete.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_complete.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_complete.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_session.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_session.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_session.cpp"
+},
+{
+  "directory": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build",
+  "command": "/usr/bin/c++ -DRV32_VERSION=\\\"1.1.0\\\" -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests -I/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/src -O3 -DNDEBUG -Wall -Wextra -Wpedantic -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough -Werror=switch -Werror=return-type -Werror=implicit-fallthrough -std=c++17 -o CMakeFiles/rv_tests.dir/tests/unit_pipeline.cpp.o -c /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_pipeline.cpp",
+  "file": "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/unit_pipeline.cpp"
+}
+]

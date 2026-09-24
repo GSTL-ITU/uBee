@@ -1,0 +1,2 @@
+/usr/bin/ar qc librv_isa.a CMakeFiles/rv_isa.dir/src/isa/isa.cpp.o CMakeFiles/rv_isa.dir/src/isa/csr.cpp.o CMakeFiles/rv_isa.dir/src/isa/decode.cpp.o CMakeFiles/rv_isa.dir/src/isa/expand.cpp.o CMakeFiles/rv_isa.dir/src/isa/encode.cpp.o CMakeFiles/rv_isa.dir/src/isa/disasm.cpp.o CMakeFiles/rv_isa.dir/src/isa/regnames.cpp.o
+/usr/bin/ranlib librv_isa.a

@@ -1,15 +1,19 @@
 # Memory map
 
 This machine is **Harvard**: instruction memory and data memory are separate
-address spaces that both start at address 0. Instruction fetch reads IMEM and
-never goes through the data bus; loads and stores reach DMEM and MMIO and can
-never see IMEM.
+address spaces. Instruction fetch reads IMEM and never goes through the data
+bus; loads and stores reach DMEM and MMIO and can never see IMEM.
+
+By default both spaces start at address **0** (teaching machine). A board file
+can place them at SoC bases — see [uBee SoC alignment](#ubee-soc-alignment)
+and `examples/ubee.toml`.
 
 ## Instruction memory (IMEM)
 
 | Range | Size | Access |
 |---|---|---|
-| `0x00000000` – … | 16 KB by default = 4096 instructions | fetch only |
+| `0x00000000` – … (default) | 16 KB by default = 4096 instructions | fetch only |
+| or board `imem_base` – … | same | fetch only |
 
 **The size is configurable** — the two lists above the hex table on the Memory
 tab, which is what they are a view of, or `[machine]` in a board file. Between 256 bytes and 1 MB, a multiple
@@ -50,19 +54,21 @@ lives in its own space and has no line in the map to paint.
 
 | Range | Size | Access |
 |---|---|---|
-| `0x00000000` – … | 16 KB by default | load / store |
+| `0x00000000` – … (default) | 16 KB by default | load / store |
+| or board `dmem_base` – … | same | load / store |
 
-Configurable in the same place. Exported as `dmem.mem`. Address 0 here is a *different location* from address 0
-in IMEM.
+Configurable in the same place. Exported as `dmem.mem`. Address *N* here is a
+*different location* from address *N* in IMEM (Harvard).
 
 ## Peripherals
 
-A one-kilobyte window at `0xFFFF0000`–`0xFFFF03FF`, divided into 64 slots of 16
-bytes. Devices are attached to slots at runtime rather than being fixed, so a
-machine can be given the peripherals an exercise needs.
+The **default** teaching machine uses a one-kilobyte window at
+`0xFFFF0000`–`0xFFFF03FF`, divided into 64 slots of 16 bytes. Devices may also
+be placed at **any absolute address** from a board file (for example uBee SoC
+UART at `0x40004000` or AXI UART at `0x60000000`).
 
-An address in the window with nothing attached **faults**. Reading as zero
-would let a program touch a peripheral that is not there and never find out.
+An address that maps to nothing attached **faults**. Reading as zero would let
+a program touch a peripheral that is not there and never find out.
 
 The default machine, if nothing says otherwise:
 
@@ -231,6 +237,10 @@ rather than taken as a dependency:
 [machine]
 imem = 8192             # bytes; omit either to keep what the machine has
 dmem = 4096
+# Optional SoC bases (omit to keep both at 0):
+# imem_base = 0x80000000
+# dmem_base = 0x20000000
+# reset     = 0x80000000
 
 [[device]]
 type = "switches"
@@ -251,12 +261,13 @@ load = "sine_table.mem" # resolved relative to this file
 ```
 
 Understood keys: `type`, `address` or `slot`, `name`, `size`, `value`, `load`,
-`readonly`, `digits`, `operation`, `latency`, and `imem`/`dmem` under
-`[machine]`. Anything else is an error naming the line and listing what was
-expected.
+`readonly`, `digits`, `operation`, `latency`, and under `[machine]`: `imem`,
+`dmem`, `imem_base`, `dmem_base`, `reset`. Anything else is an error naming the
+line and listing what was expected.
 
 Addresses are written rather than slot numbers because an address is what the
 program uses and what every panel shows; a slot number is arithmetic. An
+address may sit in the legacy `0xFFFF0000` window or at a SoC base. An
 address inside a slot names that slot, so `0xffff002c` and `0xffff0020` mean the
 same device.
 
@@ -432,6 +443,35 @@ little-endian, so `.word 0x12345678` appears as the single line `12345678`.
 
 By default the CLI truncates the file at the high-water mark; `--pad` emits the
 full array.
+
+## uBee SoC alignment
+
+The default teaching map (`IMEM`/`DMEM` at `0`, MMIO at `0xFFFF0000`) is **not**
+the uBee SoC map:
+
+| Region | Default emulator | uBee SoC (`examples/ubee.toml`) |
+|---|---|---|
+| IMEM / reset | `0x00000000` | `0x80000000` |
+| DMEM | `0x00000000` | `0x20000000` |
+| Native UART | `0xFFFF0000` | `0x40004000` |
+| AXI UART (BD hello) | — | `0x60000000` |
+
+`.mem` / `.hex` export is a **word image** for BRAM init (line *n* → word *n*).
+That part is fine on the FPGA. What must match the SoC are the **absolute
+addresses baked into the program** by `la`, `li`, and MMIO stores.
+
+For FPGA / Vivado IP work:
+
+```bash
+rv32 asm prog.s --pad --devices examples/ubee.toml
+# or in the GUI: File → Load peripherals… → examples/ubee.toml, then Assemble / Generate
+```
+
+Without that board file, a program that uses `la` to data or `0xFFFF…` MMIO will
+not run correctly on uBee even if the `.mem` depths match the BRAMs. Device
+*register layouts* in the emulator are still the teaching models — address
+alignment is what makes the image portable; full CLINT/PLIC/AXI parity is not
+claimed.
 
 ### Getting it into Vivado
 

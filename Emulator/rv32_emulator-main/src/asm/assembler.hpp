@@ -24,6 +24,13 @@ namespace rv::as {
 struct AssembleOptions {
     u32 imem_size = core::kDefaultImemSize;
     u32 dmem_size = core::kDefaultDmemSize;
+    /// Absolute origins for `.text` / `.data`. Default 0 matches the teaching
+    /// machine; a uBee board sets `0x80000000` / `0x20000000` so `la` encodes
+    /// SoC addresses into the exported `.mem` image.
+    Addr imem_base = 0;
+    Addr dmem_base = 0;
+    /// Default entry when the program has no `_start` (board `reset`).
+    Addr reset_entry = 0;
     /// Warn on every sub-word load or store. A word-addressed Verilog memory
     /// with no byte enables cannot implement sb/sh, so this catches "works in
     /// the emulator, breaks on the FPGA" before synthesis.

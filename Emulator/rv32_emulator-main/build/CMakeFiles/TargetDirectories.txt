@@ -1,0 +1,10 @@
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rv_isa.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rv_core.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rv_asm.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rv_dbg.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rv_cmd.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rv32.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rv_tests.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/test.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/edit_cache.dir
+/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/CMakeFiles/rebuild_cache.dir

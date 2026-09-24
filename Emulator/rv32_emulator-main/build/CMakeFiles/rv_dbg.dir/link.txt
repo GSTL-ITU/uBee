@@ -1,0 +1,2 @@
+/usr/bin/ar qc librv_dbg.a CMakeFiles/rv_dbg.dir/src/dbg/history.cpp.o CMakeFiles/rv_dbg.dir/src/dbg/breakpoints.cpp.o CMakeFiles/rv_dbg.dir/src/dbg/session.cpp.o CMakeFiles/rv_dbg.dir/src/dbg/pipeline.cpp.o
+/usr/bin/ranlib librv_dbg.a

@@ -26,20 +26,18 @@ public:
 
     /// Resize data memory, keeping what still fits.
     void resize_dmem(u32 size) { dmem_.resize(size); }
+    /// Place data memory at a SoC base (e.g. 0x20000000) without resizing.
+    void set_dmem_base(Addr base) { dmem_.set_base(base); }
 
     Memory& dmem() { return dmem_; }
     const Memory& dmem() const { return dmem_; }
 
     // ---- devices -----------------------------------------------------------
 
-    /// Attach a device at `slot`. Overlapping an occupied slot is allowed:
-    /// the later arrival wins the addresses they share, and the earlier one
-    /// stays attached but shadowed there. Refusing would be the tidier rule,
-    /// but a machine being built by hand spends most of its life in an
-    /// inconsistent state, and stopping the work to complain is worse than
-    /// showing what the overlap did. Returns nullptr only when the device
-    /// would run off the end of the window.
+    /// Attach a device at `slot` in the legacy `0xFFFF0000` window.
     Device* attach(std::size_t slot, std::unique_ptr<Device> device);
+    /// Attach a device at an absolute address (any map, including uBee SoC).
+    Device* attach_at(Addr base, std::unique_ptr<Device> device);
     /// Remove whatever `slot` currently resolves to, revealing anything it was
     /// shadowing.
     bool detach(std::size_t slot);
@@ -51,6 +49,7 @@ public:
     /// Attached devices whose addresses overlap this range -- what a caller
     /// warns about before adding one.
     std::vector<Device*> devices_overlapping(std::size_t slot, std::size_t span) const;
+    std::vector<Device*> devices_overlapping_address(Addr base, u32 span_bytes) const;
     /// How many of a device's own slots still resolve to it. Zero means it is
     /// completely hidden; less than its span means partly.
     std::size_t reachable_slots(const Device* device) const;
@@ -90,6 +89,9 @@ public:
 
     // ---- access ------------------------------------------------------------
 
+    /// True when `addr` hits an attached device (any absolute base).
+    bool is_device(Addr addr) const { return device_for_address(addr) != nullptr; }
+    /// Legacy helper: the default peripheral window at `kMmioBase`.
     static bool is_mmio(Addr addr) { return addr >= kMmioBase && addr - kMmioBase < kMmioSize; }
 
     MemResult load(Addr addr, u8 width, bool is_signed);

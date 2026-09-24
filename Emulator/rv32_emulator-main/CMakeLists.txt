@@ -233,3 +233,8 @@ add_test(NAME board.too_large
                  --devices ${CMAKE_CURRENT_SOURCE_DIR}/tests/board/too_small.toml)
 set_tests_properties(board.too_large PROPERTIES
                      PASS_REGULAR_EXPRESSION "does not fit in instruction memory")
+
+# SoC-aligned bases: `la` and MMIO must use uBee addresses when the board says so.
+add_test(NAME board.ubee_map
+         COMMAND rv32 test ${CMAKE_CURRENT_SOURCE_DIR}/tests/board/ubee_map.s
+                 --devices ${CMAKE_CURRENT_SOURCE_DIR}/tests/board/ubee.toml)

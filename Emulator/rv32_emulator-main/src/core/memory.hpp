@@ -60,6 +60,10 @@ public:
     /// a memory does not throw away the program or the data already in it.
     void resize(u32 size);
 
+    /// Move the region in the address space without touching its contents.
+    /// Used when a board file places IMEM/DMEM at SoC bases (e.g. 0x80000000).
+    void set_base(Addr base) { base_ = base; }
+
     /// Highest byte address written since the last clear(), relative to base.
     /// Used to decide how many lines a .mem export needs.
     u32 high_water() const { return high_water_; }

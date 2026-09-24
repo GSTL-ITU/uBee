@@ -263,6 +263,9 @@ as::AssembleOptions assemble_options_for(const Options& options,
     out.explain_pseudo_sizing = options.explain;
     if (machine.imem_size != 0) out.imem_size = machine.imem_size;
     if (machine.dmem_size != 0) out.dmem_size = machine.dmem_size;
+    if (machine.has_imem_base) out.imem_base = machine.imem_base;
+    if (machine.has_dmem_base) out.dmem_base = machine.dmem_base;
+    if (machine.has_reset) out.reset_entry = machine.reset;
     return out;
 }
 

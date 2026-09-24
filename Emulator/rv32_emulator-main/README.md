@@ -123,6 +123,11 @@ file the window loads with **File → Load peripherals**, so a machine assembled
 by hand in the GUI can be handed straight to a script. See
 [`docs/memory-map.md`](docs/memory-map.md).
 
+For **uBee SoC / FPGA export**, load [`examples/ubee.toml`](examples/ubee.toml)
+so IMEM/DMEM/`la`/MMIO addresses match the hardware map (`0x80000000` /
+`0x20000000` / `0x4000…` / `0x60000000`). The default teaching map at `0` /
+`0xFFFF0000` is for in-emulator exercises only — see the memory-map doc.
+
 ### The debugger
 
 It steps by source line by default, so a `li` that expands to two instructions

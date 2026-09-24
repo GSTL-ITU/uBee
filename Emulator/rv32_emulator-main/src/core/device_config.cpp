@@ -298,19 +298,35 @@ DeviceConfig parse_device_config(const std::string& text, const std::string& sou
         };
 
         if (in_machine) {
-            if (key != "imem" && key != "dmem") {
-                fail("unknown key '" + key + "' in [machine]; expected imem or dmem");
-                return config;
+            if (key == "imem" || key == "dmem") {
+                u32 size = 0;
+                if (!number(size)) return config;
+                const std::string checked = check_memory_size(key, size);
+                if (!checked.empty()) {
+                    fail(checked);
+                    return config;
+                }
+                (key == "imem" ? config.imem_size : config.dmem_size) = size;
+                continue;
             }
-            u32 size = 0;
-            if (!number(size)) return config;
-            const std::string checked = check_memory_size(key, size);
-            if (!checked.empty()) {
-                fail(checked);
-                return config;
+            if (key == "imem_base" || key == "dmem_base" || key == "reset") {
+                u32 addr = 0;
+                if (!number(addr)) return config;
+                if (key == "imem_base") {
+                    config.imem_base = addr;
+                    config.has_imem_base = true;
+                } else if (key == "dmem_base") {
+                    config.dmem_base = addr;
+                    config.has_dmem_base = true;
+                } else {
+                    config.reset = addr;
+                    config.has_reset = true;
+                }
+                continue;
             }
-            (key == "imem" ? config.imem_size : config.dmem_size) = size;
-            continue;
+            fail("unknown key '" + key +
+                 "' in [machine]; expected imem, dmem, imem_base, dmem_base, or reset");
+            return config;
         }
 
         DeviceSpec& spec = config.devices.back();
@@ -342,15 +358,19 @@ DeviceConfig parse_device_config(const std::string& text, const std::string& sou
         } else if (key == "address") {
             u32 addr = 0;
             if (!number(addr)) return config;
-            if (addr < kMmioBase || addr - kMmioBase >= kMmioSize) {
-                fail("address " + hex_address(addr) + " is outside the peripheral window (" +
-                     hex_address(kMmioBase) + ".." + hex_address(kMmioBase + kMmioSize - 1) +
-                     ")");
+            // Any absolute address is allowed: the default teaching window is
+            // 0xFFFF0000, but a uBee SoC board places peripherals at
+            // 0x4000_xxxx / 0x6000_0000.
+            if ((addr % kSlotSize) != 0) {
+                fail("address " + hex_address(addr) + " must be " + std::to_string(kSlotSize) +
+                     "-byte aligned");
                 return config;
             }
-            // Rounded down to the slot it falls in rather than rejected: a
-            // person naming an address inside a device means that device.
-            spec.slot = slot_of_address(addr);
+            spec.address = addr;
+            spec.has_address = true;
+            if (addr >= kMmioBase && addr - kMmioBase < kMmioSize) {
+                spec.slot = slot_of_address(addr);
+            }
         } else if (key == "name") {
             spec.name = value;
         } else if (key == "size") {
@@ -429,13 +449,17 @@ DeviceConfig read_device_config(const std::string& path) {
 std::string write_device_config(const DeviceConfig& config) {
     std::ostringstream out;
     out << "# rv32 machine configuration.\n"
-           "# Each [[device]] sits at an address in the window at 0xffff0000; see\n"
-           "# docs/memory-map.md for the register layouts.\n";
+           "# Devices may sit in the legacy window at 0xffff0000 or at absolute\n"
+           "# SoC addresses (see docs/memory-map.md and examples/ubee.toml).\n";
 
-    if (config.imem_size != 0 || config.dmem_size != 0) {
+    if (config.imem_size != 0 || config.dmem_size != 0 || config.has_imem_base ||
+        config.has_dmem_base || config.has_reset) {
         out << "\n[machine]\n";
         if (config.imem_size != 0) out << "imem = " << config.imem_size << "\n";
         if (config.dmem_size != 0) out << "dmem = " << config.dmem_size << "\n";
+        if (config.has_imem_base) out << "imem_base = " << hex_address(config.imem_base) << "\n";
+        if (config.has_dmem_base) out << "dmem_base = " << hex_address(config.dmem_base) << "\n";
+        if (config.has_reset) out << "reset = " << hex_address(config.reset) << "\n";
     }
 
     for (const DeviceSpec& spec : config.devices) {
@@ -444,7 +468,8 @@ std::string write_device_config(const DeviceConfig& config) {
         // Written as an address rather than a slot number: an address is what
         // the program uses and what the panel shows, so a file that says one
         // can be read against the code without a conversion in between.
-        out << "address = " << hex_address(slot_address(spec.slot)) << "\n";
+        const Addr addr = spec.has_address ? spec.address : slot_address(spec.slot);
+        out << "address = " << hex_address(addr) << "\n";
         if (!spec.name.empty()) out << "name = \"" << spec.name << "\"\n";
         if (!spec.operation.empty()) out << "operation = \"" << spec.operation << "\"\n";
         if (spec.has_latency) out << "latency = " << spec.latency << "\n";
@@ -464,6 +489,14 @@ DeviceConfig describe(const Hart& hart) {
     DeviceConfig config = describe(hart.bus());
     config.imem_size = hart.imem().size();
     config.dmem_size = hart.bus().dmem().size();
+    config.imem_base = hart.imem().base();
+    config.dmem_base = hart.bus().dmem().base();
+    config.has_imem_base = config.imem_base != 0;
+    config.has_dmem_base = config.dmem_base != 0;
+    if (hart.reset_entry() != 0) {
+        config.reset = hart.reset_entry();
+        config.has_reset = true;
+    }
     return config;
 }
 
@@ -475,6 +508,11 @@ std::string apply_machine_config(Hart& hart, const DeviceConfig& config,
         hart.resize_memories(config.imem_size != 0 ? config.imem_size : hart.imem().size(),
                              config.dmem_size != 0 ? config.dmem_size : hart.bus().dmem().size());
     }
+    if (config.has_imem_base || config.has_dmem_base) {
+        hart.set_memory_bases(config.has_imem_base ? config.imem_base : hart.imem().base(),
+                              config.has_dmem_base ? config.dmem_base : hart.bus().dmem().base());
+    }
+    if (config.has_reset) hart.set_reset_entry(config.reset);
     return apply_device_config(hart.bus(), config, base_directory, warnings);
 }
 
@@ -483,7 +521,9 @@ DeviceConfig describe(const Bus& bus) {
     for (Device* device : bus.devices()) {
         DeviceSpec spec;
         spec.type = std::string(device->type_name());
-        spec.slot = device->slot();
+        spec.slot = device->slot() < kMmioSlots ? device->slot() : 0;
+        spec.address = device->base_address();
+        spec.has_address = true;
 
         if (const auto* ram = dynamic_cast<const RamDevice*>(device)) {
             spec.size = ram->size();
@@ -526,7 +566,11 @@ DeviceConfig describe(const Bus& bus) {
         config.devices.push_back(std::move(spec));
     }
     std::sort(config.devices.begin(), config.devices.end(),
-              [](const DeviceSpec& a, const DeviceSpec& b) { return a.slot < b.slot; });
+              [](const DeviceSpec& a, const DeviceSpec& b) {
+                  const Addr aa = a.has_address ? a.address : slot_address(a.slot);
+                  const Addr bb = b.has_address ? b.address : slot_address(b.slot);
+                  return aa < bb;
+              });
     return config;
 }
 
@@ -577,22 +621,21 @@ std::string apply_device_config(Bus& bus, const DeviceConfig& config,
         // An overlap is worth saying out loud but not worth refusing over: the
         // machine still builds, with the later device winning the addresses
         // they share.
+        const Addr base = spec.has_address ? spec.address : slot_address(spec.slot);
         if (warnings != nullptr) {
-            const std::size_t span = std::max<std::size_t>(1, device->slot_count());
-            for (const Device* other : bus.devices_overlapping(spec.slot, span)) {
-                warnings->push_back("'" + spec.type + "' at " +
-                                    hex_address(slot_address(spec.slot)) + " overlaps '" +
-                                    std::string(other->type_name()) + "' at " +
+            for (const Device* other :
+                 bus.devices_overlapping_address(base, device->span_bytes())) {
+                warnings->push_back("'" + spec.type + "' at " + hex_address(base) +
+                                    " overlaps '" + std::string(other->type_name()) + "' at " +
                                     hex_address(other->base_address()) +
                                     "; the later one wins the addresses they share");
             }
         }
 
         auto* ram = dynamic_cast<RamDevice*>(device.get());
-        Device* attached = bus.attach(spec.slot, std::move(device));
+        Device* attached = bus.attach_at(base, std::move(device));
         if (attached == nullptr) {
-            return "'" + spec.type + "' at slot " + std::to_string(spec.slot) +
-                   " runs off the end of the peripheral window";
+            return "'" + spec.type + "' at " + hex_address(base) + " could not be attached";
         }
 
         if (ram != nullptr && !spec.load.empty()) {

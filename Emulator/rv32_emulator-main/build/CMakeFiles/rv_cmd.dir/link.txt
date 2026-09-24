@@ -1,0 +1,2 @@
+/usr/bin/ar qc librv_cmd.a CMakeFiles/rv_cmd.dir/src/cmd/format.cpp.o CMakeFiles/rv_cmd.dir/src/cmd/commands.cpp.o CMakeFiles/rv_cmd.dir/src/cmd/repl.cpp.o CMakeFiles/rv_cmd.dir/src/cmd/tty.cpp.o
+/usr/bin/ranlib librv_cmd.a

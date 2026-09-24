@@ -1,0 +1,813 @@
+Start testing: Sep 24 15:25 +03
+----------------------------------------------------------
+1/28 Testing: unit.fields
+1/28 Test: unit.fields
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=fields"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.fields" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m fields.sign_extend_boundaries[32m ok [0m fields.sign_extend_boundaries
+[90m....[0m fields.shifts_mask_the_amount[32m ok [0m fields.shifts_mask_the_amount
+[90m....[0m fields.bit_extraction[32m ok [0m fields.bit_extraction
+[90m....[0m fields.immediate_round_trip[32m ok [0m fields.immediate_round_trip
+[90m....[0m fields.immediates_do_not_disturb_other_fields[32m ok [0m fields.immediates_do_not_disturb_other_fields
+[90m....[0m fields.register_field_positions[32m ok [0m fields.register_field_positions
+[90m....[0m fields.compressed_register_fields[32m ok [0m fields.compressed_register_fields
+[90m....[0m fields.compressed_immediate_round_trip[32m ok [0m fields.compressed_immediate_round_trip
+[90m....[0m fields.compressed_immediates_stay_inside_16_bits[32m ok [0m fields.compressed_immediates_stay_inside_16_bits
+[90m....[0m devices.a_memory_block_offers_its_first_words_as_fields[32m ok [0m devices.a_memory_block_offers_its_first_words_as_fields
+[90m....[0m devices.a_large_block_offers_a_workable_number_of_fields[32m ok [0m devices.a_large_block_offers_a_workable_number_of_fields
+
+11 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.fields" end time: Sep 24 15:25 +03
+"unit.fields" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/28 Testing: unit.decode
+2/28 Test: unit.decode
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=decode"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.decode" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m decode.known_encodings[32m ok [0m decode.known_encodings
+[90m....[0m decode.shift_immediates_are_distinguished_by_funct7[32m ok [0m decode.shift_immediates_are_distinguished_by_funct7
+[90m....[0m decode.exact_match_rows_win_over_broad_ones[32m ok [0m decode.exact_match_rows_win_over_broad_ones
+[90m....[0m decode.invalid_words_are_rejected[32m ok [0m decode.invalid_words_are_rejected
+[90m....[0m decode.disassembly_round_trip_over_random_words[32m ok [0m decode.disassembly_round_trip_over_random_words
+[90m....[0m decode.every_table_row_decodes_to_itself[32m ok [0m decode.every_table_row_decodes_to_itself
+[90m....[0m decode.reserved_compressed_encodings_are_illegal[32m ok [0m decode.reserved_compressed_encodings_are_illegal
+[90m....[0m decode.the_all_zero_halfword_stays_illegal[32m ok [0m decode.the_all_zero_halfword_stays_illegal
+[90m....[0m decode.compressed_and_base_encodings_cannot_collide[32m ok [0m decode.compressed_and_base_encodings_cannot_collide
+[90m....[0m decode.every_halfword_decodes_consistently[32m ok [0m decode.every_halfword_decodes_consistently
+[90m....[0m roundtrip.decode_then_encode_reproduces_the_word[32m ok [0m roundtrip.decode_then_encode_reproduces_the_word
+[90m....[0m lexer.string_literals_decode_escapes[32m ok [0m lexer.string_literals_decode_escapes
+
+12 passed, 0 failed
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"unit.decode" end time: Sep 24 15:25 +03
+"unit.decode" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/28 Testing: unit.expand
+3/28 Test: unit.expand
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=expand"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.expand" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m expand.every_compressed_row_expands_to_a_base_instruction[32m ok [0m expand.every_compressed_row_expands_to_a_base_instruction
+[90m....[0m expand.a_base_instruction_expands_to_itself[32m ok [0m expand.a_base_instruction_expands_to_itself
+[90m....[0m expand.the_read_modify_write_forms_reuse_rd_as_rs1[32m ok [0m expand.the_read_modify_write_forms_reuse_rd_as_rs1
+[90m....[0m expand.the_load_immediate_forms_source_from_zero[32m ok [0m expand.the_load_immediate_forms_source_from_zero
+[90m....[0m expand.c_nop_is_the_canonical_nop[32m ok [0m expand.c_nop_is_the_canonical_nop
+[90m....[0m expand.the_jumps_supply_the_right_link_register[32m ok [0m expand.the_jumps_supply_the_right_link_register
+[90m....[0m expand.the_branches_compare_against_zero[32m ok [0m expand.the_branches_compare_against_zero
+[90m....[0m expand.the_stack_pointer_forms_address_through_x2[32m ok [0m expand.the_stack_pointer_forms_address_through_x2
+[90m....[0m expand.the_shifts_keep_their_direction[32m ok [0m expand.the_shifts_keep_their_direction
+[90m....[0m expand.the_register_register_forms_keep_their_operation[32m ok [0m expand.the_register_register_forms_keep_their_operation
+[90m....[0m expand.c_ebreak_is_a_real_ebreak[32m ok [0m expand.c_ebreak_is_a_real_ebreak
+[90m....[0m expand.c_lui_keeps_its_immediate_positioned[32m ok [0m expand.c_lui_keeps_its_immediate_positioned
+[90m....[0m assembler.pseudo_instructions_expand_as_documented[32m ok [0m assembler.pseudo_instructions_expand_as_documented
+
+13 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.expand" end time: Sep 24 15:25 +03
+"unit.expand" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/28 Testing: unit.roundtrip
+4/28 Test: unit.roundtrip
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=roundtrip"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.roundtrip" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m roundtrip.decode_then_encode_reproduces_the_word[32m ok [0m roundtrip.decode_then_encode_reproduces_the_word
+[90m....[0m roundtrip.canonical_words_survive_exactly[32m ok [0m roundtrip.canonical_words_survive_exactly
+[90m....[0m roundtrip.disassembly_is_never_empty_and_names_the_instruction[32m ok [0m roundtrip.disassembly_is_never_empty_and_names_the_instruction
+
+3 passed, 0 failed
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"unit.roundtrip" end time: Sep 24 15:25 +03
+"unit.roundtrip" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/28 Testing: unit.exec_alu
+5/28 Test: unit.exec_alu
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=exec_alu"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.exec_alu" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m exec_alu.addi_and_add[32m ok [0m exec_alu.addi_and_add
+[90m....[0m exec_alu.x0_is_hardwired_to_zero[32m ok [0m exec_alu.x0_is_hardwired_to_zero
+[90m....[0m exec_alu.addition_wraps_without_trapping[32m ok [0m exec_alu.addition_wraps_without_trapping
+[90m....[0m exec_alu.slt_is_signed_and_sltu_is_not[32m ok [0m exec_alu.slt_is_signed_and_sltu_is_not
+[90m....[0m exec_alu.sltiu_sign_extends_then_compares_unsigned[32m ok [0m exec_alu.sltiu_sign_extends_then_compares_unsigned
+[90m....[0m exec_alu.logical_operations[32m ok [0m exec_alu.logical_operations
+[90m....[0m exec_alu.shifts_use_only_the_low_five_bits[32m ok [0m exec_alu.shifts_use_only_the_low_five_bits
+[90m....[0m exec_alu.srl_is_logical_and_sra_is_arithmetic[32m ok [0m exec_alu.srl_is_logical_and_sra_is_arithmetic
+[90m....[0m exec_alu.lui_and_auipc[32m ok [0m exec_alu.lui_and_auipc
+
+9 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.exec_alu" end time: Sep 24 15:25 +03
+"unit.exec_alu" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/28 Testing: unit.exec_mem
+6/28 Test: unit.exec_mem
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=exec_mem"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.exec_mem" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m exec_mem.store_then_load_word[32m ok [0m exec_mem.store_then_load_word
+[90m....[0m exec_mem.byte_and_half_sign_extension[32m ok [0m exec_mem.byte_and_half_sign_extension
+[90m....[0m exec_mem.sub_word_stores_leave_neighbours_alone[32m ok [0m exec_mem.sub_word_stores_leave_neighbours_alone
+[90m....[0m exec_mem.negative_offsets[32m ok [0m exec_mem.negative_offsets
+[90m....[0m exec_mem.misaligned_word_access_traps[32m ok [0m exec_mem.misaligned_word_access_traps
+[90m....[0m exec_mem.misaligned_store_reports_the_store_cause[32m ok [0m exec_mem.misaligned_store_reports_the_store_cause
+[90m....[0m exec_mem.out_of_range_access_faults[32m ok [0m exec_mem.out_of_range_access_faults
+[90m....[0m exec_mem.uart_writes_reach_the_console[32m ok [0m exec_mem.uart_writes_reach_the_console
+[90m....[0m exec_mem.led_register_round_trips[32m ok [0m exec_mem.led_register_round_trips
+[90m....[0m exec_mem.imem_and_dmem_are_separate_address_spaces[32m ok [0m exec_mem.imem_and_dmem_are_separate_address_spaces
+
+10 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.exec_mem" end time: Sep 24 15:25 +03
+"unit.exec_mem" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/28 Testing: unit.exec_branch
+7/28 Test: unit.exec_branch
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=exec_branch"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.exec_branch" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m exec_branch.beq_taken_and_not_taken[32m ok [0m exec_branch.beq_taken_and_not_taken
+[90m....[0m exec_branch.signed_and_unsigned_comparisons_differ[32m ok [0m exec_branch.signed_and_unsigned_comparisons_differ
+[90m....[0m exec_branch.backward_branch_forms_a_loop[32m ok [0m exec_branch.backward_branch_forms_a_loop
+[90m....[0m exec_branch.jal_links_and_jumps[32m ok [0m exec_branch.jal_links_and_jumps
+[90m....[0m exec_branch.jalr_clears_the_low_bit_of_the_target[32m ok [0m exec_branch.jalr_clears_the_low_bit_of_the_target
+[90m....[0m exec_branch.jalr_computes_the_target_before_linking[32m ok [0m exec_branch.jalr_computes_the_target_before_linking
+[90m....[0m exec_branch.a_target_two_past_a_word_boundary_is_legal[32m ok [0m exec_branch.a_target_two_past_a_word_boundary_is_legal
+[90m....[0m exec_branch.an_odd_pc_still_traps[32m ok [0m exec_branch.an_odd_pc_still_traps
+[90m....[0m exec_branch.branch_with_rd_x0_does_not_link[32m ok [0m exec_branch.branch_with_rd_x0_does_not_link
+
+9 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.exec_branch" end time: Sep 24 15:25 +03
+"unit.exec_branch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/28 Testing: unit.exec_m
+8/28 Test: unit.exec_m
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=exec_m"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.exec_m" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m exec_mem.store_then_load_word[32m ok [0m exec_mem.store_then_load_word
+[90m....[0m exec_mem.byte_and_half_sign_extension[32m ok [0m exec_mem.byte_and_half_sign_extension
+[90m....[0m exec_mem.sub_word_stores_leave_neighbours_alone[32m ok [0m exec_mem.sub_word_stores_leave_neighbours_alone
+[90m....[0m exec_mem.negative_offsets[32m ok [0m exec_mem.negative_offsets
+[90m....[0m exec_mem.misaligned_word_access_traps[32m ok [0m exec_mem.misaligned_word_access_traps
+[90m....[0m exec_mem.misaligned_store_reports_the_store_cause[32m ok [0m exec_mem.misaligned_store_reports_the_store_cause
+[90m....[0m exec_mem.out_of_range_access_faults[32m ok [0m exec_mem.out_of_range_access_faults
+[90m....[0m exec_mem.uart_writes_reach_the_console[32m ok [0m exec_mem.uart_writes_reach_the_console
+[90m....[0m exec_mem.led_register_round_trips[32m ok [0m exec_mem.led_register_round_trips
+[90m....[0m exec_mem.imem_and_dmem_are_separate_address_spaces[32m ok [0m exec_mem.imem_and_dmem_are_separate_address_spaces
+[90m....[0m exec_m.mul_returns_the_low_word[32m ok [0m exec_m.mul_returns_the_low_word
+[90m....[0m exec_m.mulh_variants_differ_in_how_operands_are_extended[32m ok [0m exec_m.mulh_variants_differ_in_how_operands_are_extended
+[90m....[0m exec_m.division_by_zero_is_defined_and_does_not_trap[32m ok [0m exec_m.division_by_zero_is_defined_and_does_not_trap
+[90m....[0m exec_m.signed_division_overflow_is_defined[32m ok [0m exec_m.signed_division_overflow_is_defined
+[90m....[0m exec_m.division_truncates_toward_zero[32m ok [0m exec_m.division_truncates_toward_zero
+[90m....[0m exec_m.unsigned_division_treats_operands_as_unsigned[32m ok [0m exec_m.unsigned_division_treats_operands_as_unsigned
+
+16 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.exec_m" end time: Sep 24 15:25 +03
+"unit.exec_m" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/28 Testing: unit.exec_coverage
+9/28 Test: unit.exec_coverage
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=exec_coverage"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.exec_coverage" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m exec_coverage.every_instruction_in_the_table_executes  ecall trapped: environment call from M-mode
+[32m ok [0m exec_coverage.every_instruction_in_the_table_executes
+[90m....[0m exec_coverage.slti_is_signed_where_sltiu_is_not[32m ok [0m exec_coverage.slti_is_signed_where_sltiu_is_not
+[90m....[0m exec_coverage.slli_shifts_left_where_srli_shifts_right[32m ok [0m exec_coverage.slli_shifts_left_where_srli_shifts_right
+[90m....[0m exec_coverage.slli_masks_its_shift_amount_to_five_bits[32m ok [0m exec_coverage.slli_masks_its_shift_amount_to_five_bits
+[90m....[0m exec_coverage.andi_and_ori_are_not_each_other[32m ok [0m exec_coverage.andi_and_ori_are_not_each_other
+[90m....[0m exec_coverage.andi_sign_extends_its_immediate[32m ok [0m exec_coverage.andi_sign_extends_its_immediate
+[90m....[0m exec_coverage.bgeu_is_unsigned_where_bge_is_signed[32m ok [0m exec_coverage.bgeu_is_unsigned_where_bge_is_signed
+[90m....[0m exec_coverage.sh_writes_two_bytes_and_no_more[32m ok [0m exec_coverage.sh_writes_two_bytes_and_no_more
+[90m....[0m exec_coverage.sh_to_an_odd_address_traps[32m ok [0m exec_coverage.sh_to_an_odd_address_traps
+[90m....[0m exec_coverage.csrrci_clears_the_bits_its_immediate_names[32m ok [0m exec_coverage.csrrci_clears_the_bits_its_immediate_names
+[90m....[0m exec_coverage.csrrci_with_a_zero_immediate_does_not_write[32m ok [0m exec_coverage.csrrci_with_a_zero_immediate_does_not_write
+[90m....[0m exec_coverage.fence_retires_as_a_no_op[32m ok [0m exec_coverage.fence_retires_as_a_no_op
+[90m....[0m exec_coverage.fence_i_retires_as_a_no_op[32m ok [0m exec_coverage.fence_i_retires_as_a_no_op
+[90m....[0m exec_coverage.fence_and_fence_i_are_distinct_encodings[32m ok [0m exec_coverage.fence_and_fence_i_are_distinct_encodings
+
+14 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.exec_coverage" end time: Sep 24 15:25 +03
+"unit.exec_coverage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/28 Testing: unit.csr_trap
+10/28 Test: unit.csr_trap
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=csr_trap"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.csr_trap" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m csr_trap.csrrw_swaps_the_value[32m ok [0m csr_trap.csrrw_swaps_the_value
+[90m....[0m csr_trap.csrrs_with_x0_source_does_not_write[32m ok [0m csr_trap.csrrs_with_x0_source_does_not_write
+[90m....[0m csr_trap.csrrs_and_csrrc_set_and_clear_bits[32m ok [0m csr_trap.csrrs_and_csrrc_set_and_clear_bits
+[90m....[0m csr_trap.immediate_forms_zero_extend[32m ok [0m csr_trap.immediate_forms_zero_extend
+[90m....[0m csr_trap.csrrsi_with_zero_immediate_does_not_write[32m ok [0m csr_trap.csrrsi_with_zero_immediate_does_not_write
+[90m....[0m csr_trap.write_mask_protects_reserved_bits[32m ok [0m csr_trap.write_mask_protects_reserved_bits
+[90m....[0m csr_trap.writing_a_read_only_csr_is_illegal[32m ok [0m csr_trap.writing_a_read_only_csr_is_illegal
+[90m....[0m csr_trap.reading_a_read_only_csr_is_fine[32m ok [0m csr_trap.reading_a_read_only_csr_is_fine
+[90m....[0m csr_trap.the_machine_counters_are_writable[32m ok [0m csr_trap.the_machine_counters_are_writable
+[90m....[0m csr_trap.the_machine_counters_read_the_same_values_as_their_shadows[32m ok [0m csr_trap.the_machine_counters_read_the_same_values_as_their_shadows
+[90m....[0m csr_trap.writing_the_user_mode_counter_shadow_is_still_illegal[32m ok [0m csr_trap.writing_the_user_mode_counter_shadow_is_still_illegal
+[90m....[0m csr_trap.misa_advertises_the_c_extension[32m ok [0m csr_trap.misa_advertises_the_c_extension
+[90m....[0m csr_trap.mepc_can_hold_a_two_mod_four_address[32m ok [0m csr_trap.mepc_can_hold_a_two_mod_four_address
+[90m....[0m csr_trap.a_trap_from_a_compressed_instruction_records_its_own_address[32m ok [0m csr_trap.a_trap_from_a_compressed_instruction_records_its_own_address
+[90m....[0m csr_trap.accessing_an_unimplemented_csr_is_illegal[32m ok [0m csr_trap.accessing_an_unimplemented_csr_is_illegal
+[90m....[0m csr_trap.ecall_enters_the_handler_and_records_state[32m ok [0m csr_trap.ecall_enters_the_handler_and_records_state
+[90m....[0m csr_trap.trap_entry_saves_the_interrupt_enable_bit[32m ok [0m csr_trap.trap_entry_saves_the_interrupt_enable_bit
+[90m....[0m csr_trap.a_complete_trap_handler_round_trip[32m ok [0m csr_trap.a_complete_trap_handler_round_trip
+[90m....[0m csr_trap.mret_restores_the_interrupt_enable_bit[32m ok [0m csr_trap.mret_restores_the_interrupt_enable_bit
+[90m....[0m csr_trap.a_trap_with_no_handler_halts_instead_of_jumping_to_zero[32m ok [0m csr_trap.a_trap_with_no_handler_halts_instead_of_jumping_to_zero
+[90m....[0m csr_trap.illegal_instruction_reports_the_offending_word_in_mtval[32m ok [0m csr_trap.illegal_instruction_reports_the_offending_word_in_mtval
+[90m....[0m csr_trap.ebreak_can_trap_instead_of_halting[32m ok [0m csr_trap.ebreak_can_trap_instead_of_halting
+[90m....[0m csr_trap.running_off_the_end_of_a_program_stops[32m ok [0m csr_trap.running_off_the_end_of_a_program_stops
+
+23 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.csr_trap" end time: Sep 24 15:25 +03
+"unit.csr_trap" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/28 Testing: unit.interrupt
+11/28 Test: unit.interrupt
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=interrupt"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.interrupt" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m csr_trap.trap_entry_saves_the_interrupt_enable_bit[32m ok [0m csr_trap.trap_entry_saves_the_interrupt_enable_bit
+[90m....[0m csr_trap.mret_restores_the_interrupt_enable_bit[32m ok [0m csr_trap.mret_restores_the_interrupt_enable_bit
+[90m....[0m interrupt.the_timer_line_asserts_when_mtime_reaches_mtimecmp[32m ok [0m interrupt.the_timer_line_asserts_when_mtime_reaches_mtimecmp
+[90m....[0m interrupt.the_timer_resets_disarmed[32m ok [0m interrupt.the_timer_resets_disarmed
+[90m....[0m interrupt.a_timer_interrupt_transfers_to_mtvec[32m ok [0m interrupt.a_timer_interrupt_transfers_to_mtvec
+[90m....[0m interrupt.mcause_marks_an_interrupt_and_mepc_points_at_the_unrun_instruction[32m ok [0m interrupt.mcause_marks_an_interrupt_and_mepc_points_at_the_unrun_instruction
+[90m....[0m interrupt.entry_disables_interrupts_and_mret_puts_them_back[32m ok [0m interrupt.entry_disables_interrupts_and_mret_puts_them_back
+[90m....[0m interrupt.mret_resumes_the_instruction_the_interrupt_pre_empted[32m ok [0m interrupt.mret_resumes_the_instruction_the_interrupt_pre_empted
+[90m....[0m interrupt.a_masked_line_does_not_fire[32m ok [0m interrupt.a_masked_line_does_not_fire
+[90m....[0m interrupt.mip_reflects_the_device_lines_and_is_read_only[32m ok [0m interrupt.mip_reflects_the_device_lines_and_is_read_only
+[90m....[0m interrupt.software_and_external_lines_come_from_mmio[32m ok [0m interrupt.software_and_external_lines_come_from_mmio
+[90m....[0m interrupt.external_outranks_software_which_outranks_timer[32m ok [0m interrupt.external_outranks_software_which_outranks_timer
+[90m....[0m interrupt.an_interrupt_with_no_handler_installed_halts_and_says_so[32m ok [0m interrupt.an_interrupt_with_no_handler_installed_halts_and_says_so
+[90m....[0m interrupt.reverse_stepping_undoes_an_interrupt_exactly[32m ok [0m interrupt.reverse_stepping_undoes_an_interrupt_exactly
+[90m....[0m interrupt.reverse_stepping_restores_a_timer_the_handler_rearmed[32m ok [0m interrupt.reverse_stepping_restores_a_timer_the_handler_rearmed
+[90m....[0m interrupt.wfi_jumps_forward_to_the_next_timer_event[32m ok [0m interrupt.wfi_jumps_forward_to_the_next_timer_event
+[90m....[0m interrupt.wfi_retires_immediately_when_something_is_already_pending[32m ok [0m interrupt.wfi_retires_immediately_when_something_is_already_pending
+[90m....[0m interrupt.wfi_with_nothing_armed_halts_rather_than_hanging[32m ok [0m interrupt.wfi_with_nothing_armed_halts_rather_than_hanging
+[90m....[0m interrupt.wfi_wakes_on_a_line_that_mstatus_has_globally_masked[32m ok [0m interrupt.wfi_wakes_on_a_line_that_mstatus_has_globally_masked
+[90m....[0m devices.a_button_raises_the_external_interrupt_line[32m ok [0m devices.a_button_raises_the_external_interrupt_line
+[90m....[0m devices.a_custom_peripheral_can_raise_an_interrupt[32m ok [0m devices.a_custom_peripheral_can_raise_an_interrupt
+
+21 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.interrupt" end time: Sep 24 15:25 +03
+"unit.interrupt" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/28 Testing: unit.memfile
+12/28 Test: unit.memfile
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=memfile"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.memfile" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m memfile.renders_one_lowercase_word_per_line[32m ok [0m memfile.renders_one_lowercase_word_per_line
+[90m....[0m memfile.pads_to_the_full_array_on_request[32m ok [0m memfile.pads_to_the_full_array_on_request
+[90m....[0m memfile.round_trips_through_the_parser[32m ok [0m memfile.round_trips_through_the_parser
+[90m....[0m memfile.parser_tolerates_comments_blank_lines_and_addresses[32m ok [0m memfile.parser_tolerates_comments_blank_lines_and_addresses
+[90m....[0m memfile.parser_reports_bad_input_with_a_line_number[32m ok [0m memfile.parser_reports_bad_input_with_a_line_number
+[90m....[0m memfile.rejects_words_wider_than_32_bits[32m ok [0m memfile.rejects_words_wider_than_32_bits
+[90m....[0m memfile.packs_bytes_little_endian[32m ok [0m memfile.packs_bytes_little_endian
+[90m....[0m memfile.pads_a_partial_trailing_word[32m ok [0m memfile.pads_a_partial_trailing_word
+[90m....[0m memfile.annotated_output_carries_the_disassembly[32m ok [0m memfile.annotated_output_carries_the_disassembly
+[90m....[0m memfile.a_padded_image_is_exactly_as_deep_as_the_memory[32m ok [0m memfile.a_padded_image_is_exactly_as_deep_as_the_memory
+[90m....[0m memfile.the_depth_is_the_word_count_the_size_list_advertises[32m ok [0m memfile.the_depth_is_the_word_count_the_size_list_advertises
+
+11 passed, 0 failed
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"unit.memfile" end time: Sep 24 15:25 +03
+"unit.memfile" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/28 Testing: unit.devices
+13/28 Test: unit.devices
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=devices"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.devices" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m devices.the_catalogue_can_build_every_type_it_lists[32m ok [0m devices.the_catalogue_can_build_every_type_it_lists
+[90m....[0m devices.an_unknown_type_is_refused_rather_than_guessed[32m ok [0m devices.an_unknown_type_is_refused_rather_than_guessed
+[90m....[0m devices.the_default_machine_has_the_documented_layout[32m ok [0m devices.the_default_machine_has_the_documented_layout
+[90m....[0m devices.a_later_device_wins_the_slots_they_share[32m ok [0m devices.a_later_device_wins_the_slots_they_share
+[90m....[0m devices.an_overlap_is_reported_before_it_is_made[32m ok [0m devices.an_overlap_is_reported_before_it_is_made
+[90m....[0m devices.a_memory_block_takes_as_many_slots_as_it_needs[32m ok [0m devices.a_memory_block_takes_as_many_slots_as_it_needs
+[90m....[0m devices.an_address_with_nothing_attached_faults[32m ok [0m devices.an_address_with_nothing_attached_faults
+[90m....[0m devices.a_ram_block_stores_and_loads_like_memory[32m ok [0m devices.a_ram_block_stores_and_loads_like_memory
+[90m....[0m devices.a_rom_ignores_stores_but_can_still_be_edited_by_hand[32m ok [0m devices.a_rom_ignores_stores_but_can_still_be_edited_by_hand
+[90m....[0m devices.a_preloaded_block_survives_a_reset[32m ok [0m devices.a_preloaded_block_survives_a_reset
+[90m....[0m devices.a_program_can_read_a_preloaded_table[32m ok [0m devices.a_program_can_read_a_preloaded_table
+[90m....[0m devices.a_value_device_hands_the_program_what_the_user_typed[32m ok [0m devices.a_value_device_hands_the_program_what_the_user_typed
+[90m....[0m devices.a_button_raises_the_external_interrupt_line[32m ok [0m devices.a_button_raises_the_external_interrupt_line
+[90m....[0m devices.a_device_describes_its_own_controls[32m ok [0m devices.a_device_describes_its_own_controls
+[90m....[0m devices.a_display_renders_its_digits[32m ok [0m devices.a_display_renders_its_digits
+[90m....[0m devices.the_memory_view_can_read_and_edit_a_device_register[32m ok [0m devices.the_memory_view_can_read_and_edit_a_device_register
+[90m....[0m devices.peeking_a_device_has_no_side_effects[32m ok [0m devices.peeking_a_device_has_no_side_effects
+[90m....[0m devices.reverse_stepping_undoes_a_write_to_a_device[32m ok [0m devices.reverse_stepping_undoes_a_write_to_a_device
+[90m....[0m devices.reverse_stepping_undoes_a_write_to_a_ram_block[32m ok [0m devices.reverse_stepping_undoes_a_write_to_a_ram_block
+[90m....[0m devices.a_configuration_file_describes_a_machine[32m ok [0m devices.a_configuration_file_describes_a_machine
+[90m....[0m devices.applying_a_configuration_replaces_what_was_there[32m ok [0m devices.applying_a_configuration_replaces_what_was_there
+[90m....[0m devices.a_configuration_round_trips_through_text[32m ok [0m devices.a_configuration_round_trips_through_text
+[90m....[0m devices.configuration_errors_name_the_line_and_the_problem[32m ok [0m devices.configuration_errors_name_the_line_and_the_problem
+[90m....[0m devices.an_overlapping_file_warns_and_still_builds_the_machine[32m ok [0m devices.an_overlapping_file_warns_and_still_builds_the_machine
+[90m....[0m devices.an_anchored_load_path_is_not_resolved_against_the_board_file[32m ok [0m devices.an_anchored_load_path_is_not_resolved_against_the_board_file
+[90m....[0m devices.a_memory_block_offers_its_first_words_as_fields[32m ok [0m devices.a_memory_block_offers_its_first_words_as_fields
+[90m....[0m devices.a_large_block_offers_a_workable_number_of_fields[32m ok [0m devices.a_large_block_offers_a_workable_number_of_fields
+[90m....[0m devices.a_rom_is_still_settable_by_hand[32m ok [0m devices.a_rom_is_still_settable_by_hand
+[90m....[0m devices.a_custom_peripheral_is_named_readable_and_writable[32m ok [0m devices.a_custom_peripheral_is_named_readable_and_writable
+[90m....[0m devices.a_function_device_computes_rather_than_remembers[32m ok [0m devices.a_function_device_computes_rather_than_remembers
+[90m....[0m devices.any_write_to_a_function_device_restarts_it[32m ok [0m devices.any_write_to_a_function_device_restarts_it
+[90m....[0m devices.a_function_device_latches_its_result[32m ok [0m devices.a_function_device_latches_its_result
+[90m....[0m devices.peeking_a_function_device_does_not_start_it[32m ok [0m devices.peeking_a_function_device_does_not_start_it
+[90m....[0m devices.a_function_device_is_as_wide_as_it_was_ordered[32m ok [0m devices.a_function_device_is_as_wide_as_it_was_ordered
+[90m....[0m devices.reverse_stepping_undoes_a_write_to_a_function_device[32m ok [0m devices.reverse_stepping_undoes_a_write_to_a_function_device
+[90m....[0m devices.a_function_device_round_trips_through_a_file[32m ok [0m devices.a_function_device_round_trips_through_a_file
+[90m....[0m devices.an_unknown_operation_names_what_is_known[32m ok [0m devices.an_unknown_operation_names_what_is_known
+[90m....[0m devices.a_custom_peripheral_can_raise_an_interrupt[32m ok [0m devices.a_custom_peripheral_can_raise_an_interrupt
+[90m....[0m devices.memory_sizes_come_from_the_machine_table[32m ok [0m devices.memory_sizes_come_from_the_machine_table
+[90m....[0m devices.an_address_names_a_slot_and_a_bad_size_is_refused[32m ok [0m devices.an_address_names_a_slot_and_a_bad_size_is_refused
+[90m....[0m devices.growing_a_memory_keeps_what_was_in_it[32m ok [0m devices.growing_a_memory_keeps_what_was_in_it
+[90m....[0m devices.a_machine_round_trips_through_a_file[32m ok [0m devices.a_machine_round_trips_through_a_file
+[90m....[0m devices.a_bank_is_as_wide_as_the_board_it_stands_for[32m ok [0m devices.a_bank_is_as_wide_as_the_board_it_stands_for
+[90m....[0m devices.a_row_of_buttons_is_one_device[32m ok [0m devices.a_row_of_buttons_is_one_device
+[90m....[0m devices.a_width_survives_a_round_trip_through_a_file[32m ok [0m devices.a_width_survives_a_round_trip_through_a_file
+[90m....[0m devices.a_full_width_bank_says_nothing_about_its_width[32m ok [0m devices.a_full_width_bank_says_nothing_about_its_width
+[90m....[0m devices.the_offered_sizes_are_powers_of_two[32m ok [0m devices.the_offered_sizes_are_powers_of_two
+[90m....[0m devices.any_device_may_be_named_so_two_of_a_kind_can_be_told_apart[32m ok [0m devices.any_device_may_be_named_so_two_of_a_kind_can_be_told_apart
+
+48 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.devices" end time: Sep 24 15:25 +03
+"unit.devices" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/28 Testing: unit.lexer
+14/28 Test: unit.lexer
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=lexer"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.lexer" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m lexer.a_typical_instruction_line[32m ok [0m lexer.a_typical_instruction_line
+[90m....[0m lexer.spans_point_at_the_right_columns[32m ok [0m lexer.spans_point_at_the_right_columns
+[90m....[0m lexer.both_register_spellings_resolve_to_the_same_index[32m ok [0m lexer.both_register_spellings_resolve_to_the_same_index
+[90m....[0m lexer.a_name_that_is_not_a_register_stays_an_identifier[32m ok [0m lexer.a_name_that_is_not_a_register_stays_an_identifier
+[90m....[0m lexer.labels_consume_their_colon[32m ok [0m lexer.labels_consume_their_colon
+[90m....[0m lexer.directives_are_distinguished_from_local_labels[32m ok [0m lexer.directives_are_distinguished_from_local_labels
+[90m....[0m lexer.a_directive_name_is_only_a_directive_in_the_leading_position[32m ok [0m lexer.a_directive_name_is_only_a_directive_in_the_leading_position
+[90m....[0m lexer.number_bases[32m ok [0m lexer.number_bases
+[90m....[0m lexer.character_literals_are_numbers[32m ok [0m lexer.character_literals_are_numbers
+[90m....[0m lexer.string_literals_decode_escapes[32m ok [0m lexer.string_literals_decode_escapes
+[90m....[0m lexer.memory_operand_punctuation[32m ok [0m lexer.memory_operand_punctuation
+[90m....[0m lexer.relocation_operators_versus_modulo[32m ok [0m lexer.relocation_operators_versus_modulo
+[90m....[0m lexer.shift_operators[32m ok [0m lexer.shift_operators
+[90m....[0m lexer.all_three_comment_styles[32m ok [0m lexer.all_three_comment_styles
+[90m....[0m lexer.strict_mode_reports_bad_input[32m ok [0m lexer.strict_mode_reports_bad_input
+[90m....[0m lexer.tolerant_mode_never_diagnoses_and_always_makes_progress[32m ok [0m lexer.tolerant_mode_never_diagnoses_and_always_makes_progress
+[90m....[0m lexer.tolerant_and_strict_agree_on_valid_input[32m ok [0m lexer.tolerant_and_strict_agree_on_valid_input
+
+17 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.lexer" end time: Sep 24 15:25 +03
+"unit.lexer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/28 Testing: unit.diag_render
+15/28 Test: unit.diag_render
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=diag_render"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.diag_render" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m diag_render.points_the_caret_at_the_operand[32m ok [0m diag_render.points_the_caret_at_the_operand
+[90m....[0m diag_render.secondary_labels_add_context[32m ok [0m diag_render.secondary_labels_add_context
+[90m....[0m diag_render.a_zero_length_span_still_gets_one_caret[32m ok [0m diag_render.a_zero_length_span_still_gets_one_caret
+[90m....[0m diag_render.tabs_do_not_shift_the_caret[32m ok [0m diag_render.tabs_do_not_shift_the_caret
+[90m....[0m diag_render.summary_counts_errors_and_warnings[32m ok [0m diag_render.summary_counts_errors_and_warnings
+[90m....[0m diag_render.for_line_finds_what_the_editor_gutter_needs[32m ok [0m diag_render.for_line_finds_what_the_editor_gutter_needs
+[90m....[0m diag_render.edit_distance_basics[32m ok [0m diag_render.edit_distance_basics
+[90m....[0m diag_render.suggests_the_two_mistakes_everyone_makes[32m ok [0m diag_render.suggests_the_two_mistakes_everyone_makes
+[90m....[0m diag_render.declines_to_guess_when_nothing_is_close[32m ok [0m diag_render.declines_to_guess_when_nothing_is_close
+
+9 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.diag_render" end time: Sep 24 15:25 +03
+"unit.diag_render" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/28 Testing: unit.assembler
+16/28 Test: unit.assembler
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=assembler"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.assembler" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m assembler.encodes_basic_instructions[32m ok [0m assembler.encodes_basic_instructions
+[90m....[0m assembler.abi_and_numeric_register_names_are_interchangeable[32m ok [0m assembler.abi_and_numeric_register_names_are_interchangeable
+[90m....[0m assembler.labels_resolve_forwards_and_backwards[32m ok [0m assembler.labels_resolve_forwards_and_backwards
+[90m....[0m assembler.li_is_sized_from_its_literal[32m ok [0m assembler.li_is_sized_from_its_literal
+[90m....[0m assembler.li_round_trips_awkward_values[32m ok [0m assembler.li_round_trips_awkward_values
+[90m....[0m assembler.pseudo_instructions_expand_as_documented[32m ok [0m assembler.pseudo_instructions_expand_as_documented
+[90m....[0m assembler.zero_branches_swap_operands_where_needed[32m ok [0m assembler.zero_branches_swap_operands_where_needed
+[90m....[0m assembler.jal_has_a_one_operand_and_a_two_operand_form[32m ok [0m assembler.jal_has_a_one_operand_and_a_two_operand_form
+[90m....[0m assembler.call_is_pc_relative_and_two_words[32m ok [0m assembler.call_is_pc_relative_and_two_words
+[90m....[0m assembler.csr_shorthands_and_names[32m ok [0m assembler.csr_shorthands_and_names
+[90m....[0m assembler.expressions_fold_with_correct_precedence[32m ok [0m assembler.expressions_fold_with_correct_precedence
+[90m....[0m assembler.data_directives_emit_a_little_endian_image[32m ok [0m assembler.data_directives_emit_a_little_endian_image
+[90m....[0m assembler.align_and_space[32m ok [0m assembler.align_and_space
+[90m....[0m assembler.text_and_data_are_separate_cursors[32m ok [0m assembler.text_and_data_are_separate_cursors
+[90m....[0m assembler.la_loads_an_absolute_address_not_a_pc_relative_one[32m ok [0m assembler.la_loads_an_absolute_address_not_a_pc_relative_one
+[90m....[0m assembler.entry_point_comes_from_start[32m ok [0m assembler.entry_point_comes_from_start
+[90m....[0m assembler.jumping_to_a_data_symbol_is_an_error[32m ok [0m assembler.jumping_to_a_data_symbol_is_an_error
+[90m....[0m assembler.branching_to_a_data_symbol_is_an_error[32m ok [0m assembler.branching_to_a_data_symbol_is_an_error
+[90m....[0m assembler.out_of_range_immediates_report_the_legal_range[32m ok [0m assembler.out_of_range_immediates_report_the_legal_range
+[90m....[0m assembler.a_branch_too_far_away_is_reported[32m ok [0m assembler.a_branch_too_far_away_is_reported
+[90m....[0m assembler.unknown_mnemonics_suggest_a_replacement[32m ok [0m assembler.unknown_mnemonics_suggest_a_replacement
+[90m....[0m assembler.undefined_labels_suggest_a_defined_one[32m ok [0m assembler.undefined_labels_suggest_a_defined_one
+[90m....[0m assembler.an_out_of_range_register_number_says_so[32m ok [0m assembler.an_out_of_range_register_number_says_so
+[90m....[0m assembler.duplicate_definitions_point_at_both[32m ok [0m assembler.duplicate_definitions_point_at_both
+[90m....[0m assembler.every_mistake_in_a_file_is_reported[32m ok [0m assembler.every_mistake_in_a_file_is_reported
+[90m....[0m assembler.a_failed_line_still_reserves_its_word[32m ok [0m assembler.a_failed_line_still_reserves_its_word
+[90m....[0m assembler.mixing_address_spaces_in_arithmetic_is_reported[32m ok [0m assembler.mixing_address_spaces_in_arithmetic_is_reported
+[90m....[0m assembler.a_difference_within_one_space_is_a_plain_number[32m ok [0m assembler.a_difference_within_one_space_is_a_plain_number
+[90m....[0m assembler.li_of_an_address_suggests_la[32m ok [0m assembler.li_of_an_address_suggests_la
+[90m....[0m assembler.data_in_text_warns_that_it_cannot_be_loaded[32m ok [0m assembler.data_in_text_warns_that_it_cannot_be_loaded
+[90m....[0m assembler.strict_word_mem_flags_sub_word_access[32m ok [0m assembler.strict_word_mem_flags_sub_word_access
+[90m....[0m assembler.a_program_larger_than_imem_is_rejected[32m ok [0m assembler.a_program_larger_than_imem_is_rejected
+[90m....[0m assembler.source_map_records_one_entry_per_emitted_word[32m ok [0m assembler.source_map_records_one_entry_per_emitted_word
+[90m....[0m assembler.source_map_skips_blank_lines_and_comments[32m ok [0m assembler.source_map_skips_blank_lines_and_comments
+[90m....[0m assembler.source_map_names_the_pseudo_a_word_came_from[32m ok [0m assembler.source_map_names_the_pseudo_a_word_came_from
+[90m....[0m assembler.compressed_instructions_take_two_bytes[32m ok [0m assembler.compressed_instructions_take_two_bytes
+[90m....[0m assembler.a_32_bit_instruction_may_straddle_a_word_boundary[32m ok [0m assembler.a_32_bit_instruction_may_straddle_a_word_boundary
+[90m....[0m assembler.labels_after_compressed_code_land_where_they_should[32m ok [0m assembler.labels_after_compressed_code_land_where_they_should
+[90m....[0m assembler.a_compressed_form_rejects_a_register_it_cannot_reach[32m ok [0m assembler.a_compressed_form_rejects_a_register_it_cannot_reach
+[90m....[0m assembler.a_compressed_form_rejects_an_out_of_range_immediate[32m ok [0m assembler.a_compressed_form_rejects_an_out_of_range_immediate
+[90m....[0m assembler.the_sp_forms_insist_on_sp[32m ok [0m assembler.the_sp_forms_insist_on_sp
+[90m....[0m assembler.the_forms_that_exclude_x0_say_so[32m ok [0m assembler.the_forms_that_exclude_x0_say_so
+[90m....[0m assembler.compressed_code_round_trips_through_the_disassembler[32m ok [0m assembler.compressed_code_round_trips_through_the_disassembler
+
+43 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.assembler" end time: Sep 24 15:25 +03
+"unit.assembler" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/28 Testing: unit.complete
+17/28 Test: unit.complete
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=complete"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.complete" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m csr_trap.a_complete_trap_handler_round_trip[32m ok [0m csr_trap.a_complete_trap_handler_round_trip
+[90m....[0m complete.signatures_come_from_the_operand_syntax[32m ok [0m complete.signatures_come_from_the_operand_syntax
+[90m....[0m complete.pseudo_instructions_have_signatures_too[32m ok [0m complete.pseudo_instructions_have_signatures_too
+[90m....[0m complete.every_instruction_in_the_table_has_a_hint[32m ok [0m complete.every_instruction_in_the_table_has_a_hint
+[90m....[0m complete.the_hint_forms_say_what_is_actually_accepted[32m ok [0m complete.the_hint_forms_say_what_is_actually_accepted
+[90m....[0m complete.the_leading_word_is_a_mnemonic_position[32m ok [0m complete.the_leading_word_is_a_mnemonic_position
+[90m....[0m complete.a_label_does_not_close_the_leading_position[32m ok [0m complete.a_label_does_not_close_the_leading_position
+[90m....[0m complete.operands_are_counted_by_the_commas_before_the_caret[32m ok [0m complete.operands_are_counted_by_the_commas_before_the_caret
+[90m....[0m complete.there_is_nothing_to_suggest_inside_a_comment_or_a_string[32m ok [0m complete.there_is_nothing_to_suggest_inside_a_comment_or_a_string
+[90m....[0m complete.typing_ad_offers_add_and_addi[32m ok [0m complete.typing_ad_offers_add_and_addi
+[90m....[0m complete.a_candidate_carries_its_signature_and_a_word_about_it[32m ok [0m complete.a_candidate_carries_its_signature_and_a_word_about_it
+[90m....[0m complete.pseudo_instructions_are_offered_and_marked_as_such[32m ok [0m complete.pseudo_instructions_are_offered_and_marked_as_such
+[90m....[0m complete.directives_are_offered_after_a_dot[32m ok [0m complete.directives_are_offered_after_a_dot
+[90m....[0m complete.a_register_position_offers_registers_and_not_instructions[32m ok [0m complete.a_register_position_offers_registers_and_not_instructions
+[90m....[0m complete.both_register_spellings_are_offered[32m ok [0m complete.both_register_spellings_are_offered
+[90m....[0m complete.a_csr_position_offers_csr_names[32m ok [0m complete.a_csr_position_offers_csr_names
+[90m....[0m complete.a_label_position_offers_the_programs_symbols[32m ok [0m complete.a_label_position_offers_the_programs_symbols
+[90m....[0m complete.an_empty_prefix_offers_everything_valid_here[32m ok [0m complete.an_empty_prefix_offers_everything_valid_here
+[90m....[0m complete.matching_ignores_case[32m ok [0m complete.matching_ignores_case
+[90m....[0m complete.an_unknown_mnemonic_offers_nothing_for_its_operands[32m ok [0m complete.an_unknown_mnemonic_offers_nothing_for_its_operands
+[90m....[0m complete.the_ghost_is_the_operands_not_yet_written[32m ok [0m complete.the_ghost_is_the_operands_not_yet_written
+[90m....[0m complete.a_field_being_typed_is_left_alone[32m ok [0m complete.a_field_being_typed_is_left_alone
+[90m....[0m complete.an_open_paren_counts_as_a_field_under_way[32m ok [0m complete.an_open_paren_counts_as_a_field_under_way
+[90m....[0m complete.the_ghost_stays_out_of_the_way_of_real_text[32m ok [0m complete.the_ghost_stays_out_of_the_way_of_real_text
+[90m....[0m complete.the_ghost_is_silent_while_the_mnemonic_is_being_written[32m ok [0m complete.the_ghost_is_silent_while_the_mnemonic_is_being_written
+[90m....[0m complete.a_field_shows_its_range_only_when_the_name_does_not_say_it[32m ok [0m complete.a_field_shows_its_range_only_when_the_name_does_not_say_it
+[90m....[0m complete.a_comma_with_no_space_still_reads_as_text[32m ok [0m complete.a_comma_with_no_space_still_reads_as_text
+[90m....[0m complete.an_unknown_mnemonic_has_no_ghost[32m ok [0m complete.an_unknown_mnemonic_has_no_ghost
+
+28 passed, 0 failed
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"unit.complete" end time: Sep 24 15:25 +03
+"unit.complete" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/28 Testing: unit.session
+18/28 Test: unit.session
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=session"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.session" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m session.step_line_covers_a_whole_pseudo_instruction[32m ok [0m session.step_line_covers_a_whole_pseudo_instruction
+[90m....[0m session.step_instruction_shows_the_two_halves_of_a_pseudo[32m ok [0m session.step_instruction_shows_the_two_halves_of_a_pseudo
+[90m....[0m session.step_line_never_stops_inside_a_pseudo[32m ok [0m session.step_line_never_stops_inside_a_pseudo
+[90m....[0m session.next_runs_a_call_to_completion_but_step_enters_it[32m ok [0m session.next_runs_a_call_to_completion_but_step_enters_it
+[90m....[0m session.finish_returns_from_the_current_function[32m ok [0m session.finish_returns_from_the_current_function
+[90m....[0m session.next_steps_over_a_recursive_call[32m ok [0m session.next_steps_over_a_recursive_call
+[90m....[0m session.finish_leaves_only_the_innermost_frame_of_a_recursion[32m ok [0m session.finish_leaves_only_the_innermost_frame_of_a_recursion
+[90m....[0m session.reverse_step_restores_state_exactly[32m ok [0m session.reverse_step_restores_state_exactly
+[90m....[0m session.reverse_step_undoes_a_sub_word_store_correctly[32m ok [0m session.reverse_step_undoes_a_sub_word_store_correctly
+[90m....[0m session.reverse_step_by_line_is_symmetric_with_forward[32m ok [0m session.reverse_step_by_line_is_symmetric_with_forward
+[90m....[0m session.reverse_step_undoes_uart_output[32m ok [0m session.reverse_step_undoes_uart_output
+[90m....[0m session.reverse_past_the_start_reports_the_horizon[32m ok [0m session.reverse_past_the_start_reports_the_horizon
+[90m....[0m session.reverse_step_unhalts_the_machine[32m ok [0m session.reverse_step_unhalts_the_machine
+[90m....[0m session.breakpoints_stop_execution[32m ok [0m session.breakpoints_stop_execution
+[90m....[0m session.a_breakpoint_on_a_blank_line_snaps_forward_and_says_so[32m ok [0m session.a_breakpoint_on_a_blank_line_snaps_forward_and_says_so
+[90m....[0m session.breakpoints_survive_a_reassemble[32m ok [0m session.breakpoints_survive_a_reassemble
+[90m....[0m session.a_breakpoint_whose_line_loses_its_code_is_disabled_not_dropped[32m ok [0m session.a_breakpoint_whose_line_loses_its_code_is_disabled_not_dropped
+[90m....[0m session.watchpoints_fire_when_a_word_changes[32m ok [0m session.watchpoints_fire_when_a_word_changes
+[90m....[0m session.an_infinite_loop_hits_the_watchdog_rather_than_hanging[32m ok [0m session.an_infinite_loop_hits_the_watchdog_rather_than_hanging
+[90m....[0m session.reset_keeps_breakpoints_and_reloads_data[32m ok [0m session.reset_keeps_breakpoints_and_reloads_data
+[90m....[0m session.commands_drive_the_same_engine_the_gui_does[32m ok [0m session.commands_drive_the_same_engine_the_gui_does
+[90m....[0m session.the_examine_spec_can_be_written_attached_or_separated[32m ok [0m session.the_examine_spec_can_be_written_attached_or_separated
+[90m....[0m session.unknown_commands_and_names_suggest_a_correction[32m ok [0m session.unknown_commands_and_names_suggest_a_correction
+
+23 passed, 0 failed
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"unit.session" end time: Sep 24 15:25 +03
+"unit.session" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/28 Testing: unit.pipeline
+19/28 Test: unit.pipeline
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv_tests" "--filter=pipeline"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"unit.pipeline" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+[90m....[0m pipeline.the_pipe_fills_before_anything_commits[32m ok [0m pipeline.the_pipe_fills_before_anything_commits
+[90m....[0m pipeline.an_instruction_walks_one_stage_per_tick[32m ok [0m pipeline.an_instruction_walks_one_stage_per_tick
+[90m....[0m pipeline.a_bubble_has_no_spelling[32m ok [0m pipeline.a_bubble_has_no_spelling
+[90m....[0m pipeline.the_target_is_computed_in_ex_and_the_front_end_follows_it[32m ok [0m pipeline.the_target_is_computed_in_ex_and_the_front_end_follows_it
+[90m....[0m pipeline.a_branch_that_falls_through_is_a_misprediction[32m ok [0m pipeline.a_branch_that_falls_through_is_a_misprediction
+[90m....[0m pipeline.ticking_leaves_exactly_the_machine_that_stepping_does[32m ok [0m pipeline.ticking_leaves_exactly_the_machine_that_stepping_does
+[90m....[0m pipeline.the_pipeline_cycle_is_not_the_architectural_cycle[32m ok [0m pipeline.the_pipeline_cycle_is_not_the_architectural_cycle
+[90m....[0m pipeline.reverse_tick_undoes_the_commit_and_the_slots[32m ok [0m pipeline.reverse_tick_undoes_the_commit_and_the_slots
+[90m....[0m pipeline.ebreak_halts_and_the_pipe_drains_to_empty[32m ok [0m pipeline.ebreak_halts_and_the_pipe_drains_to_empty
+[90m....[0m pipeline.a_compressed_instruction_keeps_its_own_spelling[32m ok [0m pipeline.a_compressed_instruction_keeps_its_own_spelling
+[90m....[0m pipeline.resync_puts_the_last_committed_instruction_in_write_back[32m ok [0m pipeline.resync_puts_the_last_committed_instruction_in_write_back
+[90m....[0m pipeline.the_diagram_records_a_row_per_cycle[32m ok [0m pipeline.the_diagram_records_a_row_per_cycle
+[90m....[0m pipeline.resync_rebuilds_the_stages_around_the_pc[32m ok [0m pipeline.resync_rebuilds_the_stages_around_the_pc
+[90m....[0m pipeline.resync_leaves_write_back_empty_when_nothing_has_run[32m ok [0m pipeline.resync_leaves_write_back_empty_when_nothing_has_run
+[90m....[0m pipeline.resync_recovers_which_way_a_branch_went[32m ok [0m pipeline.resync_recovers_which_way_a_branch_went
+[90m....[0m pipeline.an_unconditional_jump_is_never_mispredicted[32m ok [0m pipeline.an_unconditional_jump_is_never_mispredicted
+[90m....[0m pipeline.a_register_jump_is_not_guessed_at_all[32m ok [0m pipeline.a_register_jump_is_not_guessed_at_all
+[90m....[0m pipeline.compressed_control_flow_is_guessed_the_same_way[32m ok [0m pipeline.compressed_control_flow_is_guessed_the_same_way
+[90m....[0m pipeline.ticking_matches_stepping_for_compressed_control_flow[32m ok [0m pipeline.ticking_matches_stepping_for_compressed_control_flow
+
+19 passed, 0 failed
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"unit.pipeline" end time: Sep 24 15:25 +03
+"unit.pipeline" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/28 Testing: asm.t_arith
+20/28 Test: asm.t_arith
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_arith.s"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"asm.t_arith" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_arith.s (76 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"asm.t_arith" end time: Sep 24 15:25 +03
+"asm.t_arith" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/28 Testing: asm.t_branch
+21/28 Test: asm.t_branch
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_branch.s"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"asm.t_branch" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_branch.s (79 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"asm.t_branch" end time: Sep 24 15:25 +03
+"asm.t_branch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/28 Testing: asm.t_compressed
+22/28 Test: asm.t_compressed
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_compressed.s"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"asm.t_compressed" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_compressed.s (146 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"asm.t_compressed" end time: Sep 24 15:25 +03
+"asm.t_compressed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/28 Testing: asm.t_mem
+23/28 Test: asm.t_mem
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_mem.s"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"asm.t_mem" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_mem.s (81 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"asm.t_mem" end time: Sep 24 15:25 +03
+"asm.t_mem" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/28 Testing: asm.t_muldiv
+24/28 Test: asm.t_muldiv
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_muldiv.s"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"asm.t_muldiv" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_muldiv.s (61 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"asm.t_muldiv" end time: Sep 24 15:25 +03
+"asm.t_muldiv" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/28 Testing: asm.t_trap
+25/28 Test: asm.t_trap
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_trap.s"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"asm.t_trap" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/asm/t_trap.s (150 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"asm.t_trap" end time: Sep 24 15:25 +03
+"asm.t_trap" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/28 Testing: board.multiplier
+26/28 Test: board.multiplier
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/multiplier.s" "--devices" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/multiplier.toml"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"board.multiplier" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/multiplier.s (79 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"board.multiplier" end time: Sep 24 15:25 +03
+"board.multiplier" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/28 Testing: board.too_large
+27/28 Test: board.too_large
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "asm" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/multiplier.s" "--devices" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/too_small.toml"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"board.too_large" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+error[E0601]: program does not fit in instruction memory (280 bytes, capacity 256)
+
+1 error
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Pass Reason:
+Required regular expression found. Regex=[does not fit in instruction memory]
+"board.too_large" end time: Sep 24 15:25 +03
+"board.too_large" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/28 Testing: board.ubee_map
+28/28 Test: board.ubee_map
+Command: "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build/rv32" "test" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/ubee_map.s" "--devices" "/home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/ubee.toml"
+Directory: /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/build
+"board.ubee_map" start time: Sep 24 15:25 +03
+Output:
+----------------------------------------------------------
+ ok   /home/suleymanonsay/Desktop/uBee/Emulator/rv32_emulator-main/tests/board/ubee_map.s (14 instructions)
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"board.ubee_map" end time: Sep 24 15:25 +03
+"board.ubee_map" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 24 15:25 +03

@@ -125,7 +125,21 @@ public:
     /// Where the device was attached. Set by the bus.
     std::size_t slot() const { return slot_; }
     void set_slot(std::size_t slot) { slot_ = slot; }
-    Addr base_address() const { return slot_address(slot_); }
+
+    /// Absolute base address. Defaults to the legacy slot window at
+    /// `kMmioBase`, but a board file may place a device anywhere (uBee SoC
+    /// peripherals live at `0x4000_xxxx` / `0x6000_0000`).
+    Addr base_address() const { return base_address_; }
+    void set_base_address(Addr addr) { base_address_ = addr; }
+
+    /// Bytes of address space this device occupies.
+    u32 span_bytes() const {
+        const std::size_t span = slot_count();
+        return static_cast<u32>((span == 0 ? 1 : span) * kSlotSize);
+    }
+    bool contains_address(Addr addr) const {
+        return addr >= base_address_ && addr - base_address_ < span_bytes();
+    }
 
     /// What this one is called. A machine may hold several of a kind -- two
     /// UARTs, one to a terminal and one to a sensor -- and once it does, the
@@ -141,6 +155,7 @@ public:
 
 private:
     std::size_t slot_ = 0;
+    Addr base_address_ = kMmioBase;
     std::string label_;
 };
 

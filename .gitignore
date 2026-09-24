@@ -1,0 +1,22 @@
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Emulator build
+Emulator/rv32_emulator-main/build/
+
+# Vivado / sim leftovers
+**/.Xil/
+**/xsim.dir/
+*.jou
+*.log
+*.pb
+*.wdb
+*.wcfg
+*.str

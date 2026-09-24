@@ -1,0 +1,8 @@
+# The smallest machine the format allows, which multiplier.s does not fit in.
+#
+# Used by the board.too_large test: the sizes in a file have to reach the
+# assembler as well as the run, or a program too big for the machine is
+# truncated on load and quietly becomes a different program.
+[machine]
+imem = 256
+dmem = 256

@@ -1,0 +1,160 @@
+// THE instruction set, described exactly once.
+//
+// This file is #included several times with RV_INSTR defined differently each
+// time, to generate: the InstrId enum, the InstrDesc table, and the
+// mnemonic -> id lookup. The decoder, the disassembler and the assembler all
+// read from that one table, so a wrong funct3 is wrong everywhere at once
+// (and therefore caught by the first round-trip test) instead of being wrong
+// in one direction only and surviving for weeks.
+//
+// Execution semantics deliberately live elsewhere: src/core/exec.cpp switches
+// over InstrId with no default label under -Werror=switch, so adding a row here
+// breaks the build until the executor handles it.
+//
+//   id      mnemonic  fmt  match       mask        syntax        group
+//
+// match/mask: an instruction word w decodes to this row iff (w & mask) == match.
+
+// ---- RV32I: upper immediates and jumps ------------------------------------
+RV_INSTR(LUI,    "lui",    U,    0x00000037, 0x0000007f, RD_UIMM,      Upper)
+RV_INSTR(AUIPC,  "auipc",  U,    0x00000017, 0x0000007f, RD_UIMM,      Upper)
+RV_INSTR(JAL,    "jal",    J,    0x0000006f, 0x0000007f, RD_LBL,       Jump)
+RV_INSTR(JALR,   "jalr",   I,    0x00000067, 0x0000707f, RD_OFS_RS1,   Jump)
+
+// ---- RV32I: branches ------------------------------------------------------
+RV_INSTR(BEQ,    "beq",    B,    0x00000063, 0x0000707f, RS1_RS2_LBL,  Branch)
+RV_INSTR(BNE,    "bne",    B,    0x00001063, 0x0000707f, RS1_RS2_LBL,  Branch)
+RV_INSTR(BLT,    "blt",    B,    0x00004063, 0x0000707f, RS1_RS2_LBL,  Branch)
+RV_INSTR(BGE,    "bge",    B,    0x00005063, 0x0000707f, RS1_RS2_LBL,  Branch)
+RV_INSTR(BLTU,   "bltu",   B,    0x00006063, 0x0000707f, RS1_RS2_LBL,  Branch)
+RV_INSTR(BGEU,   "bgeu",   B,    0x00007063, 0x0000707f, RS1_RS2_LBL,  Branch)
+
+// ---- RV32I: loads ---------------------------------------------------------
+RV_INSTR(LB,     "lb",     I,    0x00000003, 0x0000707f, RD_OFS_RS1,   Load)
+RV_INSTR(LH,     "lh",     I,    0x00001003, 0x0000707f, RD_OFS_RS1,   Load)
+RV_INSTR(LW,     "lw",     I,    0x00002003, 0x0000707f, RD_OFS_RS1,   Load)
+RV_INSTR(LBU,    "lbu",    I,    0x00004003, 0x0000707f, RD_OFS_RS1,   Load)
+RV_INSTR(LHU,    "lhu",    I,    0x00005003, 0x0000707f, RD_OFS_RS1,   Load)
+
+// ---- RV32I: stores --------------------------------------------------------
+RV_INSTR(SB,     "sb",     S,    0x00000023, 0x0000707f, RS2_OFS_RS1,  Store)
+RV_INSTR(SH,     "sh",     S,    0x00001023, 0x0000707f, RS2_OFS_RS1,  Store)
+RV_INSTR(SW,     "sw",     S,    0x00002023, 0x0000707f, RS2_OFS_RS1,  Store)
+
+// ---- RV32I: register-immediate arithmetic ---------------------------------
+RV_INSTR(ADDI,   "addi",   I,    0x00000013, 0x0000707f, RD_RS1_IMM,   ArithI)
+RV_INSTR(SLTI,   "slti",   I,    0x00002013, 0x0000707f, RD_RS1_IMM,   ArithI)
+RV_INSTR(SLTIU,  "sltiu",  I,    0x00003013, 0x0000707f, RD_RS1_IMM,   ArithI)
+RV_INSTR(XORI,   "xori",   I,    0x00004013, 0x0000707f, RD_RS1_IMM,   ArithI)
+RV_INSTR(ORI,    "ori",    I,    0x00006013, 0x0000707f, RD_RS1_IMM,   ArithI)
+RV_INSTR(ANDI,   "andi",   I,    0x00007013, 0x0000707f, RD_RS1_IMM,   ArithI)
+// The shift-immediates carry the shift *type* in funct7, so their mask is
+// wider than the other I-type rows.
+RV_INSTR(SLLI,   "slli",   I,    0x00001013, 0xfe00707f, RD_RS1_SHAMT, Shift)
+RV_INSTR(SRLI,   "srli",   I,    0x00005013, 0xfe00707f, RD_RS1_SHAMT, Shift)
+RV_INSTR(SRAI,   "srai",   I,    0x40005013, 0xfe00707f, RD_RS1_SHAMT, Shift)
+
+// ---- RV32I: register-register arithmetic ----------------------------------
+RV_INSTR(ADD,    "add",    R,    0x00000033, 0xfe00707f, RD_RS1_RS2,   ArithR)
+RV_INSTR(SUB,    "sub",    R,    0x40000033, 0xfe00707f, RD_RS1_RS2,   ArithR)
+RV_INSTR(SLL,    "sll",    R,    0x00001033, 0xfe00707f, RD_RS1_RS2,   Shift)
+RV_INSTR(SLT,    "slt",    R,    0x00002033, 0xfe00707f, RD_RS1_RS2,   ArithR)
+RV_INSTR(SLTU,   "sltu",   R,    0x00003033, 0xfe00707f, RD_RS1_RS2,   ArithR)
+RV_INSTR(XOR,    "xor",    R,    0x00004033, 0xfe00707f, RD_RS1_RS2,   ArithR)
+RV_INSTR(SRL,    "srl",    R,    0x00005033, 0xfe00707f, RD_RS1_RS2,   Shift)
+RV_INSTR(SRA,    "sra",    R,    0x40005033, 0xfe00707f, RD_RS1_RS2,   Shift)
+RV_INSTR(OR,     "or",     R,    0x00006033, 0xfe00707f, RD_RS1_RS2,   ArithR)
+RV_INSTR(AND,    "and",    R,    0x00007033, 0xfe00707f, RD_RS1_RS2,   ArithR)
+
+// ---- M extension: multiply and divide -------------------------------------
+RV_INSTR(MUL,    "mul",    R,    0x02000033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+RV_INSTR(MULH,   "mulh",   R,    0x02001033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+RV_INSTR(MULHSU, "mulhsu", R,    0x02002033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+RV_INSTR(MULHU,  "mulhu",  R,    0x02003033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+RV_INSTR(DIV,    "div",    R,    0x02004033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+RV_INSTR(DIVU,   "divu",   R,    0x02005033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+RV_INSTR(REM,    "rem",    R,    0x02006033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+RV_INSTR(REMU,   "remu",   R,    0x02007033, 0xfe00707f, RD_RS1_RS2,   MulDiv)
+
+// ---- Zicsr ----------------------------------------------------------------
+RV_INSTR(CSRRW,  "csrrw",  I,    0x00001073, 0x0000707f, RD_CSR_RS1,   Csr)
+RV_INSTR(CSRRS,  "csrrs",  I,    0x00002073, 0x0000707f, RD_CSR_RS1,   Csr)
+RV_INSTR(CSRRC,  "csrrc",  I,    0x00003073, 0x0000707f, RD_CSR_RS1,   Csr)
+RV_INSTR(CSRRWI, "csrrwi", I,    0x00005073, 0x0000707f, RD_CSR_ZIMM,  Csr)
+RV_INSTR(CSRRSI, "csrrsi", I,    0x00006073, 0x0000707f, RD_CSR_ZIMM,  Csr)
+RV_INSTR(CSRRCI, "csrrci", I,    0x00007073, 0x0000707f, RD_CSR_ZIMM,  Csr)
+
+// ---- System and memory ordering -------------------------------------------
+// Single-hart in-order machine: FENCE is architecturally a no-op here, but it
+// must still assemble and disassemble so that code written against a real
+// toolchain works unchanged.
+RV_INSTR(FENCE,  "fence",  I,    0x0000000f, 0x0000707f, NONE,         Fence)
+// Zifencei. Also a no-op, and for a stronger reason than FENCE: the machine is
+// Harvard, so a program physically cannot write the instruction stream it is
+// fetching from. It must still assemble, because startup code written for a
+// real toolchain contains one.
+RV_INSTR(FENCEI, "fence.i", I,   0x0000100f, 0x0000707f, NONE,         Fence)
+RV_INSTR(ECALL,  "ecall",  I,    0x00000073, 0xffffffff, NONE,         System)
+RV_INSTR(EBREAK, "ebreak", I,    0x00100073, 0xffffffff, NONE,         System)
+RV_INSTR(MRET,   "mret",   I,    0x30200073, 0xffffffff, NONE,         System)
+RV_INSTR(WFI,    "wfi",    I,    0x10500073, 0xffffffff, NONE,         System)
+
+// ---- C extension: 16-bit encodings ----------------------------------------
+//
+// Three quadrants, selected by op[1:0]; a full-width instruction has op = 11,
+// which is why no compressed encoding can collide with a base one. Match and
+// mask are 16-bit here, and `InstrDesc::length()` reports 2 because the format
+// is one of the C* ones.
+//
+// Every row is an alias for exactly one base instruction -- see
+// src/isa/expand.cpp, which is where the semantics live. Nothing in
+// src/core/exec.cpp knows these exist.
+//
+// Four constraints cannot be written as a match/mask and are enforced in
+// decode.cpp instead: c.addi4spn with nzuimm == 0, c.addi16sp and c.lui with
+// imm == 0, c.lui with rd == 0, and c.jr/c.jalr with rs1 == x0. A mask can say
+// "these bits are fixed", not "these bits are not all zero".
+
+// ---- quadrant 0 (op = 00) --------------------------------------------------
+RV_INSTR(C_ADDI4SPN, "c.addi4spn", CIW, 0x0000, 0xe003, C_RDP_UIMM,      ArithI)
+RV_INSTR(C_LW,       "c.lw",       CL,  0x4000, 0xe003, C_RDP_OFS_RS1P,  Load)
+RV_INSTR(C_SW,       "c.sw",       CS,  0xc000, 0xe003, C_RS2P_OFS_RS1P, Store)
+
+// ---- quadrant 1 (op = 01) --------------------------------------------------
+// c.nop is c.addi with rd and imm both zero. It gets its own row rather than
+// disassembling as `c.addi zero, 0` because that is what it is called, and the
+// bucket sort in decode.cpp prefers it automatically: its mask is wider.
+RV_INSTR(C_NOP,      "c.nop",      CI,  0x0001, 0xffff, NONE,            System)
+RV_INSTR(C_ADDI,     "c.addi",     CI,  0x0001, 0xe003, C_RD_IMM,        ArithI)
+RV_INSTR(C_JAL,      "c.jal",      CJ,  0x2001, 0xe003, C_LBL,           Jump)
+RV_INSTR(C_LI,       "c.li",       CI,  0x4001, 0xe003, C_RD_IMM,        ArithI)
+// c.addi16sp and c.lui share funct3; rd == 2 selects the former, and its
+// wider mask wins the bucket sort.
+RV_INSTR(C_ADDI16SP, "c.addi16sp", CI,  0x6101, 0xef83, C_IMM,           ArithI)
+RV_INSTR(C_LUI,      "c.lui",      CI,  0x6001, 0xe003, C_RD_UIMM,       Upper)
+// The shift-immediates pin bit 12 as well: it is shamt[5], and RV32 has no
+// shift amount that needs it, so a set bit 12 is a reserved encoding rather
+// than a shift of 32 or more. c.andi shares the funct3 but *uses* bit 12 as the
+// sign of its immediate, so its mask must leave it free.
+RV_INSTR(C_SRLI,     "c.srli",     CB,  0x8001, 0xfc03, C_RDP_SHAMT,     Shift)
+RV_INSTR(C_SRAI,     "c.srai",     CB,  0x8401, 0xfc03, C_RDP_SHAMT,     Shift)
+RV_INSTR(C_ANDI,     "c.andi",     CB,  0x8801, 0xec03, C_RDP_IMM,       ArithI)
+RV_INSTR(C_SUB,      "c.sub",      CA,  0x8c01, 0xfc63, C_RDP_RS2P,      ArithR)
+RV_INSTR(C_XOR,      "c.xor",      CA,  0x8c21, 0xfc63, C_RDP_RS2P,      ArithR)
+RV_INSTR(C_OR,       "c.or",       CA,  0x8c41, 0xfc63, C_RDP_RS2P,      ArithR)
+RV_INSTR(C_AND,      "c.and",      CA,  0x8c61, 0xfc63, C_RDP_RS2P,      ArithR)
+RV_INSTR(C_J,        "c.j",        CJ,  0xa001, 0xe003, C_LBL,           Jump)
+RV_INSTR(C_BEQZ,     "c.beqz",     CB,  0xc001, 0xe003, C_RS1P_LBL,      Branch)
+RV_INSTR(C_BNEZ,     "c.bnez",     CB,  0xe001, 0xe003, C_RS1P_LBL,      Branch)
+
+// ---- quadrant 2 (op = 10) --------------------------------------------------
+RV_INSTR(C_SLLI,     "c.slli",     CI,  0x0002, 0xf003, C_RD_SHAMT,      Shift)
+RV_INSTR(C_LWSP,     "c.lwsp",     CI,  0x4002, 0xe003, C_RD_OFS_SP,     Load)
+// The funct4=100x block: rs2 == 0 selects the jump forms, and their wider mask
+// wins the bucket sort over c.mv/c.add. c.ebreak is narrower still.
+RV_INSTR(C_JR,       "c.jr",       CR,  0x8002, 0xf07f, C_RS1,           Jump)
+RV_INSTR(C_MV,       "c.mv",       CR,  0x8002, 0xf003, C_RD_RS2,        ArithR)
+RV_INSTR(C_EBREAK,   "c.ebreak",   CR,  0x9002, 0xffff, NONE,            System)
+RV_INSTR(C_JALR,     "c.jalr",     CR,  0x9002, 0xf07f, C_RS1,           Jump)
+RV_INSTR(C_ADD,      "c.add",      CR,  0x9002, 0xf003, C_RD_RS2,        ArithR)
+RV_INSTR(C_SWSP,     "c.swsp",     CSS, 0xc002, 0xe003, C_RS2_OFS_SP,    Store)

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=rv32
+GenericName=RISC-V Emulator
+Comment=RV32IMC_Zicsr_Zifencei emulator, assembler and debugger
+Exec=rv32-gui %f
+Icon=rv32
+Terminal=false
+Categories=Development;Debugger;
+MimeType=text/x-asm;
+Keywords=riscv;assembly;assembler;emulator;debugger;
+# X11 matches a window to this entry by its class, Wayland by the name the
+# application reports through setDesktopFileName. Both are spelled rv32.
+StartupWMClass=rv32

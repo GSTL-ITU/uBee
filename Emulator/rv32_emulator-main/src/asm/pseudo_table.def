@@ -1,0 +1,58 @@
+// Pseudo-instructions, described once.
+//
+//   id      spelling  operands  shape      words
+//
+// `words` is fixed at parse time -- this assembler does no branch relaxation,
+// so a pseudo's size never depends on a symbol value that pass 1 has not seen
+// yet. `la` and `call` are therefore always 2 words even when the target would
+// have fit in one; the assembler emits a note saying so, which turns a wart
+// into a lesson about what the two instructions are doing.
+//
+// LI is the one exception: its size depends only on a literal the parser has
+// already read, so it can be sized exactly (see pseudo.cpp).
+
+// ---- register moves and unary operations ----------------------------------
+RV_PSEUDO(NOP,   "nop",   0, NONE,      1)
+RV_PSEUDO(MV,    "mv",    2, RD_RS,     1)
+RV_PSEUDO(NOT,   "not",   2, RD_RS,     1)
+RV_PSEUDO(NEG,   "neg",   2, RD_RS,     1)
+RV_PSEUDO(SEQZ,  "seqz",  2, RD_RS,     1)
+RV_PSEUDO(SNEZ,  "snez",  2, RD_RS,     1)
+RV_PSEUDO(SLTZ,  "sltz",  2, RD_RS,     1)
+RV_PSEUDO(SGTZ,  "sgtz",  2, RD_RS,     1)
+
+// ---- branches against zero -------------------------------------------------
+RV_PSEUDO(BEQZ,  "beqz",  2, RS_LBL,    1)
+RV_PSEUDO(BNEZ,  "bnez",  2, RS_LBL,    1)
+RV_PSEUDO(BLEZ,  "blez",  2, RS_LBL,    1)
+RV_PSEUDO(BGEZ,  "bgez",  2, RS_LBL,    1)
+RV_PSEUDO(BLTZ,  "bltz",  2, RS_LBL,    1)
+RV_PSEUDO(BGTZ,  "bgtz",  2, RS_LBL,    1)
+
+// ---- branches with swapped operands ---------------------------------------
+RV_PSEUDO(BGT,   "bgt",   3, RS_RS_LBL, 1)
+RV_PSEUDO(BLE,   "ble",   3, RS_RS_LBL, 1)
+RV_PSEUDO(BGTU,  "bgtu",  3, RS_RS_LBL, 1)
+RV_PSEUDO(BLEU,  "bleu",  3, RS_RS_LBL, 1)
+
+// ---- jumps -----------------------------------------------------------------
+RV_PSEUDO(J,     "j",     1, LBL,       1)
+RV_PSEUDO(JAL1,  "jal",   1, LBL,       1)  // one-operand form: jal ra, label
+RV_PSEUDO(JR,    "jr",    1, RS,        1)
+RV_PSEUDO(JALR1, "jalr",  1, RS,        1)  // one-operand form: jalr ra, rs, 0
+RV_PSEUDO(RET,   "ret",   0, NONE,      1)
+RV_PSEUDO(CALL,  "call",  1, LBL,       2)  // auipc + jalr, pc-relative
+RV_PSEUDO(TAIL,  "tail",  1, LBL,       2)
+
+// ---- loading constants and addresses --------------------------------------
+RV_PSEUDO(LI,    "li",    2, RD_IMM,    1)  // 1 or 2 words; sized in pseudo.cpp
+RV_PSEUDO(LA,    "la",    2, RD_SYM,    2)  // always lui+addi: see docs/memory-map.md
+
+// ---- CSR shorthands --------------------------------------------------------
+RV_PSEUDO(CSRR,  "csrr",  2, RD_CSR,    1)
+RV_PSEUDO(CSRW,  "csrw",  2, CSR_RS,    1)
+RV_PSEUDO(CSRS,  "csrs",  2, CSR_RS,    1)
+RV_PSEUDO(CSRC,  "csrc",  2, CSR_RS,    1)
+RV_PSEUDO(CSRWI, "csrwi", 2, CSR_IMM,   1)
+RV_PSEUDO(CSRSI, "csrsi", 2, CSR_IMM,   1)
+RV_PSEUDO(CSRCI, "csrci", 2, CSR_IMM,   1)

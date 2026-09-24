@@ -1,0 +1,14 @@
+<!DOCTYPE RCC>
+<!-- Compiled into the binary, so the window has its icon whether or not
+     anything has been installed into an icon theme. -->
+<RCC version="1.0">
+  <qresource prefix="/">
+    <file alias="rv32-16.png">icons/rv32-16.png</file>
+    <file alias="rv32-24.png">icons/rv32-24.png</file>
+    <file alias="rv32-32.png">icons/rv32-32.png</file>
+    <file alias="rv32-48.png">icons/rv32-48.png</file>
+    <file alias="rv32-64.png">icons/rv32-64.png</file>
+    <file alias="rv32-128.png">icons/rv32-128.png</file>
+    <file alias="rv32-256.png">icons/rv32-256.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,51 @@
+// Control and status registers, described once.
+//
+// Scope is deliberately narrow: machine mode only. No PMP, no U/S mode, no
+// satp, no interrupt delegation -- that is most of the privileged spec's
+// complexity for none of the teaching value at this level.
+//
+//   id        name        addr    reset       write_mask
+//
+// write_mask is the WARL mask: bits set to 0 ignore writes and read back as
+// their reset value. A mask of 0 makes the CSR read-only.
+
+// mstatus: only MIE (bit 3), MPIE (bit 7) and MPP (bits 12:11) are writable.
+RV_CSR(MSTATUS,   "mstatus",   0x300, 0x0000'0000, 0x0000'1888)
+// misa: MXL=1 (RV32) in bits 31:30, plus extensions C (bit 2), I (bit 8) and
+// M (bit 12). Zifencei has no misa bit, so fence.i does not show up here.
+RV_CSR(MISA,      "misa",      0x301, 0x4000'1104, 0x0000'0000)
+RV_CSR(MIE,       "mie",       0x304, 0x0000'0000, 0x0000'0888)
+// mtvec: direct mode only, so the two mode bits are held at zero.
+RV_CSR(MTVEC,     "mtvec",     0x305, 0x0000'0000, 0xffff'fffc)
+RV_CSR(MSCRATCH,  "mscratch",  0x340, 0x0000'0000, 0xffff'ffff)
+// mepc: with the C extension IALIGN is 16, so bit 1 is now writable and only
+// bit 0 is held at zero. A handler that resumes a compressed instruction needs
+// that bit; masking it off would silently move the resume point back two bytes.
+RV_CSR(MEPC,      "mepc",      0x341, 0x0000'0000, 0xffff'fffe)
+RV_CSR(MCAUSE,    "mcause",    0x342, 0x0000'0000, 0xffff'ffff)
+RV_CSR(MTVAL,     "mtval",     0x343, 0x0000'0000, 0xffff'ffff)
+RV_CSR(MIP,       "mip",       0x344, 0x0000'0000, 0x0000'0000)
+
+// Machine identification: all zero, all read-only.
+RV_CSR(MVENDORID, "mvendorid", 0xf11, 0x0000'0000, 0x0000'0000)
+RV_CSR(MARCHID,   "marchid",   0xf12, 0x0000'0000, 0x0000'0000)
+RV_CSR(MIMPID,    "mimpid",    0xf13, 0x0000'0000, 0x0000'0000)
+RV_CSR(MHARTID,   "mhartid",   0xf14, 0x0000'0000, 0x0000'0000)
+
+// Machine counters. Unlike the user-mode shadows below these are genuinely
+// writable -- the spec has them settable so a program can zero them before a
+// measurement -- and a write feeds back into the hart's own counter rather than
+// being overwritten by the next set_counters(). See Hart::step().
+RV_CSR(MCYCLE,    "mcycle",    0xb00, 0x0000'0000, 0xffff'ffff)
+RV_CSR(MINSTRET,  "minstret",  0xb02, 0x0000'0000, 0xffff'ffff)
+RV_CSR(MCYCLEH,   "mcycleh",   0xb80, 0x0000'0000, 0xffff'ffff)
+RV_CSR(MINSTRETH, "minstreth", 0xb82, 0x0000'0000, 0xffff'ffff)
+
+// Counters. Read-only shadows of the hart's own counters, refreshed by
+// CsrFile::set_counters() before each instruction executes.
+RV_CSR(CYCLE,     "cycle",     0xc00, 0x0000'0000, 0x0000'0000)
+RV_CSR(TIME,      "time",      0xc01, 0x0000'0000, 0x0000'0000)
+RV_CSR(INSTRET,   "instret",   0xc02, 0x0000'0000, 0x0000'0000)
+RV_CSR(CYCLEH,    "cycleh",    0xc80, 0x0000'0000, 0x0000'0000)
+RV_CSR(TIMEH,     "timeh",     0xc81, 0x0000'0000, 0x0000'0000)
+RV_CSR(INSTRETH,  "instreth",  0xc82, 0x0000'0000, 0x0000'0000)

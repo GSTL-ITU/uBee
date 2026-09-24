@@ -1,0 +1,19 @@
+// Assembler directives, described once.
+//
+//   id      spelling
+RV_DIR(TEXT,   ".text")
+RV_DIR(DATA,   ".data")
+RV_DIR(WORD,   ".word")
+RV_DIR(HALF,   ".half")
+RV_DIR(BYTE,   ".byte")
+RV_DIR(ASCII,  ".ascii")
+RV_DIR(ASCIZ,  ".asciz")
+RV_DIR(STRING, ".string")
+RV_DIR(SPACE,  ".space")
+RV_DIR(ZERO,   ".zero")
+RV_DIR(ALIGN,  ".align")
+RV_DIR(EQU,    ".equ")
+RV_DIR(SET,    ".set")
+RV_DIR(GLOBL,  ".globl")
+RV_DIR(GLOBAL, ".global")
+RV_DIR(ORG,    ".org")

@@ -1,0 +1,81 @@
+# A machine with more of a board about it than the default has.
+#
+# Load it from the GUI with File -> Load peripherals, or pass it to any of the
+# command line tools with --devices. Applying a configuration replaces the
+# default set entirely, so what is here is exactly what the machine gets.
+
+[machine]
+imem = 16384
+dmem = 16384
+
+[[device]]
+type = "uart"
+slot = 0
+
+[[device]]
+type = "leds"
+slot = 1
+
+[[device]]
+type = "switches"
+slot = 2
+value = 0b1010          # a starting position for the switches
+
+[[device]]
+type = "mtime"
+slot = 3
+
+[[device]]
+type = "mtimecmp"
+slot = 4
+
+[[device]]
+type = "irq"
+slot = 5
+
+# A button on its own slot. Pressing it raises the external interrupt line,
+# which is the simplest thing in this machine that behaves like real
+# asynchronous input.
+[[device]]
+type = "button"
+slot = 6
+
+# A dial or a sensor: a number the user types in and the program reads.
+[[device]]
+type = "value"
+slot = 7
+value = 100
+
+# Four 7-segment digits, written as one byte per digit.
+[[device]]
+type = "display"
+slot = 8
+
+# 128 bytes of scratch memory outside the main data memory, at 0xffff0090.
+# Being a peripheral rather than a special case means it can be preloaded from
+# a .mem file, marked read-only, and edited by hand from the memory view.
+[[device]]
+type = "ram"
+slot = 9
+size = 128
+
+# Your own peripheral: two registers the program reads and writes, both
+# settable by hand in the Devices panel, and a line it can raise an interrupt
+# on. This is the entry for when what an exercise needs is not in the list.
+[[device]]
+type = "custom"
+name = "sensor"
+address = 0xffff0110
+size = 2
+
+# A peripheral that computes rather than remembers: the multiplier IP from the
+# course's IP homework. Write both operands -- the write is what starts it --
+# poll the status register until it reads 2, then read the product as two
+# halves. Any write restarts it, so the poll loop reads and does nothing else.
+[[device]]
+type = "function"
+name = "multiplier"
+address = 0xffff0120
+operation = "mul"
+size = 8                # bits per operand; the product is twice that
+latency = 7             # cycles it reports busy

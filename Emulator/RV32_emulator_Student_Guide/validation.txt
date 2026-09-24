@@ -1,0 +1,112 @@
+first_steps.s
+addr      word      instruction               effect
+---------------------------------------------------------------
+00000000  00500513  addi a0, zero, 5          a0 = 0x00000005
+00000004  00300593  addi a1, zero, 3          a1 = 0x00000003
+00000008  00b50633  add a2, a0, a1            a2 = 0x00000008
+0000000c  000002b7  lui t0, 0x0               t0 = 0x00000000
+00000010  00028293  addi t0, t0, 0            t0 = 0x00000000
+00000014  00c2a023  sw a2, 0(t0)              [0x00000000] <- 4 bytes
+00000018  0002a683  lw a3, 0(t0)              a3 = 0x00000008
+0000001c  00100073  ebreak                    
+
+stopped: ebreak
+
+registers (non-zero only):
+  x10 a0   0x00000005  5
+  x11 a1   0x00000003  3
+  x12 a2   0x00000008  8
+  x13 a3   0x00000008  8
+  pc       0x00000020   cycle 8  instret 8
+note: 'la' always expands to two instructions (lui + addi), even when the address would fit in one; this is why the disassembly shows 'lui rd, 0'
+   --> /tmp/rv32-student-guide/examples/first_steps.s:10:9
+    |
+ 10 |         la t0, result
+    |         ^^ reported once per file
+
+
+
+sum_loop.s
+addr      word      instruction               effect
+---------------------------------------------------------------
+00000000  00100293  addi t0, zero, 1          t0 = 0x00000001
+00000004  00600313  addi t1, zero, 6          t1 = 0x00000006
+00000008  00000513  addi a0, zero, 0          a0 = 0x00000000
+0000000c  00550533  add a0, a0, t0            a0 = 0x00000001
+00000010  00128293  addi t0, t0, 1            t0 = 0x00000002
+00000014  fe62cce3  blt t0, t1, 0xc           
+0000000c  00550533  add a0, a0, t0            a0 = 0x00000003
+00000010  00128293  addi t0, t0, 1            t0 = 0x00000003
+00000014  fe62cce3  blt t0, t1, 0xc           
+0000000c  00550533  add a0, a0, t0            a0 = 0x00000006
+00000010  00128293  addi t0, t0, 1            t0 = 0x00000004
+00000014  fe62cce3  blt t0, t1, 0xc           
+0000000c  00550533  add a0, a0, t0            a0 = 0x0000000a
+00000010  00128293  addi t0, t0, 1            t0 = 0x00000005
+00000014  fe62cce3  blt t0, t1, 0xc           
+0000000c  00550533  add a0, a0, t0            a0 = 0x0000000f
+00000010  00128293  addi t0, t0, 1            t0 = 0x00000006
+00000014  fe62cce3  blt t0, t1, 0xc           
+00000018  00100073  ebreak                    
+
+stopped: ebreak
+
+registers (non-zero only):
+  x5  t0   0x00000006  6
+  x6  t1   0x00000006  6
+  x10 a0   0x0000000f  15
+  pc       0x0000001c   cycle 19  instret 19
+
+
+uart.s
+addr      word      instruction               effect
+---------------------------------------------------------------
+00000000  ffff02b7  lui t0, 0xffff0           t0 = 0xffff0000
+00000004  00028293  addi t0, t0, 0            t0 = 0xffff0000
+00000008  04100513  addi a0, zero, 65         a0 = 0x00000041
+0000000c  00a28023  sb a0, 0(t0)              [0xffff0000] <- 1 bytes
+00000010  00a00513  addi a0, zero, 10         a0 = 0x0000000a
+00000014  00a28023  sb a0, 0(t0)              [0xffff0000] <- 1 bytes
+00000018  00100073  ebreak                    
+
+stopped: ebreak
+
+registers (non-zero only):
+  x5  t0   0xffff0000  -65536
+  x10 a0   0x0000000a  10
+  pc       0x0000001c   cycle 7  instret 7
+
+uart output:
+A
+
+
+
+switches_leds.s
+addr      word      instruction               effect
+---------------------------------------------------------------
+00000000  ffff02b7  lui t0, 0xffff0           t0 = 0xffff0000
+00000004  02028293  addi t0, t0, 32           t0 = 0xffff0020
+00000008  0002a503  lw a0, 0(t0)              a0 = 0x00000000
+0000000c  ffff0337  lui t1, 0xffff0           t1 = 0xffff0000
+00000010  01030313  addi t1, t1, 16           t1 = 0xffff0010
+00000014  00a32023  sw a0, 0(t1)              [0xffff0010] <- 4 bytes
+00000018  00100073  ebreak                    
+
+stopped: ebreak
+
+registers (non-zero only):
+  x5  t0   0xffff0020  -65504
+  x6  t1   0xffff0010  -65520
+  pc       0x0000001c   cycle 7  instret 7
+
+Board test:
+
+stopped: ebreak
+
+registers (non-zero only):
+  x5  t0   0xffff0020  -65504
+  x6  t1   0xffff0010  -65520
+  x10 a0   0x0000000a  10
+  pc       0x0000001c   cycle 7  instret 7
+
+Padded export: both files have 4096 lines; initial result is zero.

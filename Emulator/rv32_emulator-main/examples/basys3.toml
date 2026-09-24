@@ -1,0 +1,24 @@
+# A Basys 3: 16 switches, 16 LEDs, five buttons.
+[machine]
+imem = 8192
+dmem = 4096
+
+[[device]]
+type = "uart"
+address = 0xffff0000
+
+[[device]]
+type = "leds"
+address = 0xffff0010
+size = 16
+
+[[device]]
+type = "switches"
+address = 0xffff0020
+size = 16
+value = 0b1010
+
+[[device]]
+type = "button"
+address = 0xffff0030
+size = 5

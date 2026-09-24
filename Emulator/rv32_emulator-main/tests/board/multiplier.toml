@@ -1,0 +1,26 @@
+# The machine tests/board/multiplier.s expects, and the one the IP homework
+# describes: an 8 x 8 multiplier IP on the processor's own memory-mapped IO.
+#
+# Passed to any command with --devices. Applying a configuration replaces the
+# default set entirely, so what is here is exactly what the machine gets.
+
+[machine]
+imem = 8192
+# Deliberately larger than the 16 KB a machine has by default, so that a
+# program storing past 16 KB proves the size in this file reached the run.
+dmem = 32768
+
+[[device]]
+type = "uart"
+address = 0xffff0000
+
+# The multiplier IP and its host, from IP_Homework.pdf: two 8-bit operands, a
+# 16-bit product read as two halves, and a status register to poll. Seven
+# cycles busy, and any write restarts the operation.
+[[device]]
+type = "function"
+name = "multiplier"
+address = 0xffff0060
+operation = "mul"
+size = 8
+latency = 7

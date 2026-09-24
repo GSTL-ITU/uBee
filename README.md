@@ -2,11 +2,13 @@
   <img src="assets/microBee_Logo.svg" alt="microBee" width="220">
 </p>
 
-# microBee — EHB326E Lesson Contents (Student Package)
+# microBee
 
-**microBee** (μBee) is a teaching-oriented RISC-V MCU / SoC platform for the EHB326E course: Vivado IP (`uBee_soc`), block-design labs, hello UART bring-up, and an accompanying RV32 emulator.
+**microBee** (μBee) is a teaching-oriented RISC-V MCU/SoC platform designed for hands-on embedded systems education. It includes a Vivado IP core (`uBee_soc`), block-design-based laboratory exercises, a UART bring-up example, and an accompanying RV32 emulator.
 
-This is a joint project of the **GSTL** lab and the **TUBITAK TUTEL Scholar Laboratory**.
+The initial version of microBee was developed for use in the **EHB326E** course.
+
+microBee is a joint project of the **GSTL** and **TÜBİTAK TÜTEL Bursiyer Laboratuvarı**.
 
 <p align="center">
   <a href="https://www.gstl.itu.edu.tr/"><img src="assets/GSTL_logo.png" alt="GSTL" height="88"></a>
@@ -14,36 +16,49 @@ This is a joint project of the **GSTL** lab and the **TUBITAK TUTEL Scholar Labo
   <a href="https://tutel.bilgem.tubitak.gov.tr/"><img src="assets/tutel_logo.png" alt="TÜTEL" height="88"></a>
 </p>
 
-For more information and collaboration opportunities, visit the [GSTL](https://www.gstl.itu.edu.tr/) and [TÜTEL](https://tutel.bilgem.tubitak.gov.tr/) websites or email [gstl@itu.edu.tr](mailto:gstl@itu.edu.tr) and [tutel@tubitak.gov.tr](mailto:tutel@tubitak.gov.tr).
+For more information or collaboration opportunities, visit the [GSTL](https://www.gstl.itu.edu.tr/) and [TÜTEL](https://tutel.bilgem.tubitak.gov.tr/) websites, or contact us at [gstl@itu.edu.tr](mailto:gstl@itu.edu.tr) and [tutel@tubitak.gov.tr](mailto:tutel@tubitak.gov.tr).
 
 ## Contents
 
-| Path | Purpose |
-|------|---------|
-| `IP/` | Vivado IP repository (`uBee_soc`). See [`IP/README.md`](IP/README.md). |
-| `Compiled_Assembly_Files/` | `imem.hex` / `dmem.hex` for SoC BRAM init |
-| `RTL_files/` | Hello UART testbench (`tb_design_1_hello.sv`) and helpers |
-| `Homework_1/` | Chapter 2 homework notes |
-| `Emulator/RV32_emulator_Student_Guide/` | Student usage guide (PDF/HTML) + examples |
-| `Emulator/rv32_emulator-main/` | RV32IMC emulator, assembler, and debugger |
-| `EHB326_Book_MCU_en.pdf` / `EHB326_Book_MCU_tr.pdf` | Course book (EN / TR) |
-| `assets/` | Project logos |
+| Path                                                | Purpose                                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `IP/`                                               | Vivado IP repository containing `uBee_soc`. See [`IP/README.md`](IP/README.md). |
+| `Compiled_Assembly_Files/`                          | Precompiled `imem.hex` and `dmem.hex` files for SoC BRAM initialization         |
+| `RTL_files/`                                        | Hello UART testbench (`tb_design_1_hello.sv`) and supporting files              |
+| `Homework_1/`                                       | Homework material for Chapter 2                                                 |
+| `Emulator/RV32_emulator_Student_Guide/`             | Student usage guide in PDF and HTML formats, including examples                 |
+| `Emulator/rv32_emulator-main/`                      | RV32IMC emulator, assembler, and debugger                                       |
+| `EHB326_Book_MCU_en.pdf` / `EHB326_Book_MCU_tr.pdf` | Course book in English and Turkish                                              |
+| `assets/`                                           | Project logos and other visual assets                                           |
 
-## Quick start (Vivado IP)
+## Quick Start — Vivado IP
 
-1. Create / open your Vivado project (Arty A7).
-2. **Tools → Settings → IP → Repository** → add the `IP` folder from this package.
-3. Refresh IP Catalog → add **uBee SoC RV32IMC**.
-4. Build the block design as in the book.
-5. On `uBee_soc`, set **IMEM/DMEM Init File** to **absolute** paths of:
-   - `Compiled_Assembly_Files/imem.hex`
-   - `Compiled_Assembly_Files/dmem.hex`
-6. Simulate with `RTL_files/tb_design_1_hello.sv` (top: `tb_design_1_hello`).
+1. Create a new Vivado project or open an existing one targeting the **Arty A7**.
+2. Navigate to **Tools → Settings → IP → Repository** and add the `IP` directory from this repository.
+3. Refresh the IP Catalog and add **uBee SoC RV32IMC** to your design.
+4. Build the block design by following the instructions provided in the course book.
+5. In the `uBee_soc` configuration, set the **IMEM Init File** and **DMEM Init File** parameters to the absolute paths of:
 
-Expect UART text: `Hello from uBee on Arty A7` (9600 baud @ 100 MHz).
+   * `Compiled_Assembly_Files/imem.hex`
+   * `Compiled_Assembly_Files/dmem.hex`
+6. Run the simulation using `RTL_files/tb_design_1_hello.sv` as the simulation top module (`tb_design_1_hello`).
 
-Do not move files out of `IP/uBee_soc/` without keeping relative layout; the IP is self-contained with relative source paths.
+A successful simulation should produce the following UART output:
+
+`Hello from uBee on Arty A7`
+
+The UART is configured for **9600 baud** with a **100 MHz** system clock.
+
+> **Note:** Do not move files out of `IP/uBee_soc/` unless the existing relative directory structure is preserved. The IP is designed to be self-contained and uses relative paths for its source files.
 
 ## Emulator
 
-Start with [`Emulator/RV32_emulator_Student_Guide/`](Emulator/RV32_emulator_Student_Guide/) (`RV32 Student Usage Guide.pdf` or `.html`). Source and install notes are in [`Emulator/rv32_emulator-main/README.md`](Emulator/rv32_emulator-main/README.md).
+For emulator usage, start with the student guide located in:
+
+[`Emulator/RV32_emulator_Student_Guide/`](Emulator/RV32_emulator_Student_Guide/)
+
+The guide is available as both `RV32 Student Usage Guide.pdf` and `.html`.
+
+Source code, installation instructions, and additional information about the emulator are available in:
+
+[`Emulator/rv32_emulator-main/README.md`](Emulator/rv32_emulator-main/README.md)

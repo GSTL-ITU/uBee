@@ -403,8 +403,11 @@ module uBee_core #(
     .immediate_o   (decode_immediate)
   );
 
+  // Retire / RF write only when WB is not waiting on a posted local DMEM rsp.
+  // Otherwise minstret and side-effects would repeat every hold cycle.
   assign rf_write_enable = mem_wb_valid_q && mem_wb_rd_write_q &&
-                           !mem_wb_exception_valid_q;
+                           !mem_wb_exception_valid_q && !posted_rsp_err &&
+                           !posted_wb_hold;
 
   uBee_regfile #(
     .SHADOW_BANK_ENABLE (SHADOW_BANK_ENABLE)
@@ -988,13 +991,14 @@ module uBee_core #(
   assign synchronous_trap_valid = (mem_wb_valid_q &&
     mem_wb_exception_valid_q) || posted_rsp_err;
   assign csr_mret_commit = mem_wb_valid_q && !mem_wb_exception_valid_q &&
-    !posted_rsp_err &&
+    !posted_rsp_err && !posted_wb_hold &&
     (mem_wb_system_operation_q == `UBEE_SYSTEM_MRET);
   assign csr_write_commit = mem_wb_valid_q && !mem_wb_exception_valid_q &&
-    !posted_rsp_err &&
+    !posted_rsp_err && !posted_wb_hold &&
     mem_wb_csr_write_enable_q;
+  // One retirement pulse per instruction: suppress while posted store holds WB.
   assign csr_instruction_retired = mem_wb_valid_q &&
-    !mem_wb_exception_valid_q && !posted_rsp_err;
+    !mem_wb_exception_valid_q && !posted_rsp_err && !posted_wb_hold;
 
   assign pipeline_empty = !if_id_valid_q && !id_ex_valid_q &&
     !ex_mem_valid_q && !mem_wb_valid_q && !presented_valid &&
@@ -1549,7 +1553,8 @@ module uBee_core #(
   // ----------------------------------------------------------------------
   // Architectural commit/event trace.
   // ----------------------------------------------------------------------
-  assign trace_valid_o = interrupt_trace_pending_q || mem_wb_valid_q;
+  assign trace_valid_o = interrupt_trace_pending_q ||
+    (mem_wb_valid_q && !posted_wb_hold);
   assign trace_pc_o = interrupt_trace_pending_q
     ? interrupt_trace_pc_q : mem_wb_pc_q;
   assign trace_instruction_o = interrupt_trace_pending_q
@@ -1669,7 +1674,7 @@ module uBee_core #(
     .memory_response_error_i  (memory_response_error),
     .fetch_response_err_i     (imem_rsp_err_i),
     .fetch_discard_i          (fetch_discard_q),
-    .mem_wb_valid_i           (mem_wb_valid_q),
+    .mem_wb_valid_i           (mem_wb_valid_q && !posted_wb_hold),
     .mem_wb_exception_valid_i (mem_wb_exception_valid_q || posted_rsp_err),
     .mem_wb_memory_valid_i    (mem_wb_memory_valid_q),
     .mem_wb_memory_write_i    (mem_wb_memory_write_q),

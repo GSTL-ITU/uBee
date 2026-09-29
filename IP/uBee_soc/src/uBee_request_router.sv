@@ -27,7 +27,11 @@ module uBee_request_router #(
   parameter bit          TIMER_ENABLE  = 1'b1,
   parameter bit          UART_ENABLE   = 1'b1,
   parameter bit          MONITOR_ENABLE = 1'b1,
-  parameter bit          IMEM_ALIAS_ENABLE = 1'b0
+  parameter bit          IMEM_ALIAS_ENABLE = 1'b0,
+  // DV-only: route undecoded addresses to the DMEM port so a permissive
+  // memory model can return zero without access-fault (Spike soft-RAM match).
+  // Product SoC shall leave this 0 (unmapped -> error).
+  parameter bit          UNMAPPED_TO_DMEM = 1'b0
 ) (
   input  logic        clk_i,
   input  logic        rst_ni,
@@ -200,6 +204,8 @@ module uBee_request_router #(
       decode_sel = SEL_DMEM;
     end else if (axi_hit) begin
       decode_sel = SEL_AXI;
+    end else if (UNMAPPED_TO_DMEM) begin
+      decode_sel = SEL_DMEM;
     end else begin
       decode_sel = SEL_ERR;
     end

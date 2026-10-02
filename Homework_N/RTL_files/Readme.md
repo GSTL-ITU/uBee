@@ -1,0 +1,1 @@
+There exist sim_1 and sources_1 directories undert the project.srcs directory. sim directory includes the simulation testbenchs. sources directory includes block design and rtl files. Copy and add them to your homework files. Its mandatalory.

@@ -1,0 +1,1 @@
+Copy IP here. And make necessary corrections about paths before upload your system.

@@ -135,7 +135,7 @@ module uBee_timer #(
       OFF_PERIOD_LO: begin read_data = period_q[31:0]; reg_hit = 1'b1; end
       OFF_PERIOD_HI: begin read_data = period_q[63:32]; reg_hit = 1'b1; end
       OFF_STATUS: begin
-        read_data = {23'b0, ctrl_en_q, status_cmp1_q, status_cmp0_q};
+        read_data = {23'b0, ctrl_en_q, 6'b0, status_cmp1_q, status_cmp0_q};
         reg_hit = 1'b1;
       end
       OFF_CAPABILITY: begin

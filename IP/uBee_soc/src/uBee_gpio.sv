@@ -42,7 +42,7 @@ module uBee_gpio #(
   logic        rsp_err_q;
 
   logic [11:0] offset;
-  logic [4:0]  bank_idx;
+  logic [6:0]  bank_idx;
   logic        word_aligned;
   logic        request_fire;
   logic        bank_hit;

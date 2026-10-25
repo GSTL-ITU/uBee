@@ -147,7 +147,7 @@ module uBee_monitor #(
     if (offset == `UBEE_MON_CTRL_OFFSET) begin
       reg_hit   = 1'b1;
       ctrl_write = 1'b1;
-      read_data = {28'b0, enable_q, freeze_q, 1'b0, 1'b0};
+      read_data = {30'b0, freeze_q, enable_q};
     end else if (offset == `UBEE_MON_CAPABILITY_OFFSET) begin
       reg_hit   = 1'b1;
       read_data = capability_val;

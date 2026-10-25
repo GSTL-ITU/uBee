@@ -11,6 +11,10 @@ Thumbs.db
 # Emulator build
 Emulator/rv32_emulator-main/build/
 
+# CTest / Test temporary files
+**/Testing/Temporary/
+Testing/Temporary/
+
 # Vivado / sim leftovers
 **/.Xil/
 **/xsim.dir/

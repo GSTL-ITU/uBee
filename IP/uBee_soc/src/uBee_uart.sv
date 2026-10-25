@@ -135,7 +135,7 @@ module uBee_uart #(
         reg_hit   = 1'b1;
       end
       OFF_STATUS: begin
-        read_data = {22'b0, frame_err_q, overrun_q, tx_busy_q, tx_full,
+        read_data = {22'b0, frame_err_q, overrun_q, 3'b0, tx_busy_q, tx_full,
                      tx_empty, rx_full, rx_valid};
         reg_hit = 1'b1;
       end
@@ -146,11 +146,11 @@ module uBee_uart #(
       end
       OFF_BAUDDIV: begin read_data = bauddiv_q; reg_hit = 1'b1; end
       OFF_IRQ_STATUS: begin
-        read_data = {22'b0, irq_err_q, irq_rx_q, irq_tx_q};
+        read_data = {29'b0, irq_err_q, irq_rx_q, irq_tx_q};
         reg_hit = 1'b1;
       end
       OFF_FIFO_LEVEL: begin
-        read_data = {tx_count_q[7:0], 8'b0, rx_count_q[7:0]};
+        read_data = {8'b0, 8'(tx_count_q), 8'b0, 8'(rx_count_q)};
         reg_hit = 1'b1;
       end
       OFF_CAPABILITY: begin

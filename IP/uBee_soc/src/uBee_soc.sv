@@ -57,11 +57,11 @@ module uBee_soc #(
   // External interrupt sources: bit n -> PLIC source ID (n+1)
   input  logic [PLIC_SOURCES-1:0] ext_irq_i,
 
-  input  logic [GPIO_WIDTH-1:0] gpio_in_i = '0,
+  input  logic [GPIO_WIDTH-1:0] gpio_in_i,
   output logic [GPIO_WIDTH-1:0] gpio_out_o,
   output logic [GPIO_WIDTH-1:0] gpio_oe_o,
   output logic                  uart_tx_o,
-  input  logic                  uart_rx_i = 1'b1,
+  input  logic                  uart_rx_i,
 
   // AXI4-Lite master
   output logic [31:0] m_axi_awaddr_o,

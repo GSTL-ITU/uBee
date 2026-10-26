@@ -23,9 +23,9 @@ module uBee_native_bram #(
   output logic        rsp_err_o
 `ifdef SIMULATION
   ,
-  input logic        tb_mem_we_i    = 1'b0,
-  input logic [31:0] tb_mem_widx_i  = 32'b0,
-  input logic [31:0] tb_mem_wdata_i = 32'b0
+  input logic        tb_mem_we_i,
+  input logic [31:0] tb_mem_widx_i,
+  input logic [31:0] tb_mem_wdata_i
 `endif
 );
   localparam integer BRAM_ADDR_BITS = (WORDS <= 1) ? 1 : $clog2(WORDS);

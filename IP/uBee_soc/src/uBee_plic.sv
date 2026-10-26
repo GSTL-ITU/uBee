@@ -205,7 +205,7 @@ module uBee_plic #(
                 rsp_rdata_q <= {{(32-PRIO_BITS){1'b0}}, priority_q[prio_id]};
               end
             end else if (offset == OFF_PENDING) begin
-              rsp_rdata_q <= {15'b0, pending_q, 1'b0};
+              rsp_rdata_q <= {{(31-NUM_SOURCES){1'b0}}, pending_q, 1'b0};
             end else if (offset == OFF_SOURCE_MODE) begin
               rsp_rdata_q <= source_mode_q;
             end else if (offset == OFF_INPUT_STATE) begin
@@ -214,7 +214,7 @@ module uBee_plic #(
               rsp_rdata_q <= {{(32-NUM_SOURCES){1'b0}},
                               IRQ_INITIAL_LEVEL[NUM_SOURCES-1:0]};
             end else if (offset == OFF_ENABLE) begin
-              rsp_rdata_q <= {15'b0, enable_q, 1'b0};
+              rsp_rdata_q <= {{(31-NUM_SOURCES){1'b0}}, enable_q, 1'b0};
             end else if (offset == OFF_THRESHOLD) begin
               rsp_rdata_q <= {{(32-PRIO_BITS){1'b0}}, threshold_q};
             end else if (offset == OFF_CLAIM) begin
@@ -258,7 +258,7 @@ module uBee_plic #(
               source_mode_q <= new_mode & mode_mask;
             end else if (offset == OFF_ENABLE) begin
               logic [31:0] edata;
-              edata = apply_wstrb({15'b0, enable_q, 1'b0}, req_wdata_i, req_wstrb_i);
+              edata = apply_wstrb({{(31-NUM_SOURCES){1'b0}}, enable_q, 1'b0}, req_wdata_i, req_wstrb_i);
               enable_q <= edata[NUM_SOURCES:1];
             end else if (offset == OFF_THRESHOLD) begin
               logic [31:0] tdata;

@@ -130,9 +130,9 @@ module uBee_soc #(
   output logic [31:0] dbg_csr_minstreth_o
 `ifdef SIMULATION
   ,
-  input logic        tb_dmem_we_i    = 1'b0,
-  input logic [31:0] tb_dmem_widx_i  = 32'b0,
-  input logic [31:0] tb_dmem_wdata_i = 32'b0
+  input logic        tb_dmem_we_i,
+  input logic [31:0] tb_dmem_widx_i,
+  input logic [31:0] tb_dmem_wdata_i
 `endif
 );
   logic rst_n_sync_q;

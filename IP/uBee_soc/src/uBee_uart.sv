@@ -311,8 +311,8 @@ module uBee_uart #(
             if (req_wstrb_i[0] && req_wdata_i[0]) irq_tx_q <= 1'b0;
             if (req_wstrb_i[0] && req_wdata_i[1]) irq_rx_q <= 1'b0;
             if (req_wstrb_i[0] && req_wdata_i[2]) irq_err_q <= 1'b0;
-            if (req_wstrb_i[0] && req_wdata_i[8]) overrun_q <= 1'b0;
-            if (req_wstrb_i[0] && req_wdata_i[9]) frame_err_q <= 1'b0;
+            if (req_wstrb_i[1] && req_wdata_i[8]) overrun_q <= 1'b0;
+            if (req_wstrb_i[1] && req_wdata_i[9]) frame_err_q <= 1'b0;
           end
           default: begin end
         endcase

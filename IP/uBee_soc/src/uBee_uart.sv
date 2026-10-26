@@ -113,9 +113,9 @@ module uBee_uart #(
   assign rsp_rdata_o  = rsp_rdata_q;
   assign rsp_err_o    = rsp_err_q;
 
-  assign tx_full  = (tx_count_q == FIFO_DEPTH);
+  assign tx_full  = (32'(tx_count_q) == FIFO_DEPTH);
   assign tx_empty = (tx_count_q == 0);
-  assign rx_full  = (rx_count_q == FIFO_DEPTH);
+  assign rx_full  = (32'(rx_count_q) == FIFO_DEPTH);
   assign rx_valid = (rx_count_q != 0);
 
   assign rx_sample = loopback_q ? uart_tx_o : uart_rx_i;
@@ -227,43 +227,62 @@ module uBee_uart #(
         uart_tx_o <= 1'b1;
       end
 
-      // RX oversampler (16x baud)
+      // RX deserializer
       if (rx_en_q && bauddiv_q >= 32'd8) begin
-        logic [31:0] rx_tick_div;
-        rx_tick_div = bauddiv_q >> 2;
-        if (rx_baud_cnt_q >= rx_tick_div) begin
-          rx_baud_cnt_q <= 32'b0;
-          if (!rx_active_q && !rx_bit) begin
-            rx_active_q    <= 1'b1;
-            rx_sample_idx_q<= 4'd0;
-            rx_shift_q     <= 8'b0;
-          end else if (rx_active_q) begin
-            if (rx_sample_idx_q == 4'd7) begin
-              rx_shift_q[rx_sample_idx_q[2:0]] <= rx_bit;
-            end else if (rx_sample_idx_q == 4'd15) begin
-              if (rx_bit) begin
-                frame_err_q <= 1'b1;
-                irq_err_q   <= 1'b1;
-              end else begin
-                if (rx_full) begin
-                  overrun_q <= 1'b1;
-                  irq_err_q <= 1'b1;
-                end else begin
-                  rx_fifo_mem[rx_head_q] <= rx_shift_q;
-                  rx_head_q              <= rx_head_q + FIFO_PTR_W'(1);
-                  rx_count_q             <= rx_count_q + FIFO_PTR_W'(1);
-                  irq_rx_q               <= 1'b1;
-                end
-              end
-              rx_active_q <= 1'b0;
-            end else if (rx_sample_idx_q >= 4'd1 && rx_sample_idx_q <= 4'd8) begin
-              rx_shift_q[rx_sample_idx_q[2:0] - 1] <= rx_bit;
-            end
-            rx_sample_idx_q <= rx_sample_idx_q + 4'd1;
+        if (!rx_active_q) begin
+          if (rx_prev_q && !rx_bit) begin
+            rx_active_q     <= 1'b1;
+            rx_sample_idx_q <= 4'd0;
+            rx_baud_cnt_q   <= 32'd0;
+            rx_shift_q      <= 8'd0;
           end
         end else begin
-          rx_baud_cnt_q <= rx_baud_cnt_q + 32'd1;
+          if (rx_sample_idx_q == 4'd0) begin
+            // Mid-start bit: sample at half baud period
+            if (rx_baud_cnt_q >= (bauddiv_q >> 1)) begin
+              rx_baud_cnt_q <= 32'd0;
+              if (!rx_bit) begin
+                rx_sample_idx_q <= 4'd1;
+              end else begin
+                rx_active_q <= 1'b0; // False start glitch
+              end
+            end else begin
+              rx_baud_cnt_q <= rx_baud_cnt_q + 32'd1;
+            end
+          end else if (rx_sample_idx_q >= 4'd1 && rx_sample_idx_q <= 4'd8) begin
+            // Data bits 0 to 7: sample each at full baud period
+            if (rx_baud_cnt_q >= (bauddiv_q - 32'd1)) begin
+              rx_baud_cnt_q <= 32'd0;
+              rx_shift_q[3'(rx_sample_idx_q - 4'd1)] <= rx_bit;
+              rx_sample_idx_q <= rx_sample_idx_q + 4'd1;
+            end else begin
+              rx_baud_cnt_q <= rx_baud_cnt_q + 32'd1;
+            end
+          end else begin
+            // Stop bit: sample at full baud period
+            if (rx_baud_cnt_q >= (bauddiv_q - 32'd1)) begin
+              rx_baud_cnt_q <= 32'd0;
+              rx_active_q   <= 1'b0;
+              if (!rx_bit) begin
+                frame_err_q <= 1'b1;
+                irq_err_q   <= 1'b1;
+              end else if (rx_full) begin
+                overrun_q   <= 1'b1;
+                irq_err_q   <= 1'b1;
+              end else begin
+                rx_fifo_mem[rx_head_q] <= rx_shift_q;
+                rx_head_q              <= rx_head_q + FIFO_PTR_W'(1);
+                rx_count_q             <= rx_count_q + FIFO_PTR_W'(1);
+                irq_rx_q               <= 1'b1;
+              end
+            end else begin
+              rx_baud_cnt_q <= rx_baud_cnt_q + 32'd1;
+            end
+          end
         end
+      end else begin
+        rx_active_q   <= 1'b0;
+        rx_baud_cnt_q <= 32'd0;
       end
       rx_prev_q <= rx_bit;
 

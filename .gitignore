@@ -11,6 +11,11 @@ Thumbs.db
 # Emulator build
 Emulator/rv32_emulator-main/build/
 
+# Local verification / test module
+tmcu/
+work/
+
+
 # CTest / Test temporary files
 **/Testing/Temporary/
 Testing/Temporary/
